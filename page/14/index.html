@@ -207,6 +207,239 @@
 
     
     
+      
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2013/09/12/20132015/android事件监听器/" itemprop="url">
+                  Android 事件监听器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2013-09-12T13:32:19+08:00" content="2013-09-12">
+              2013-09-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>单击事件(View.OnClickListener):用户触碰某个组件或者方向键被按下时产生该事件，该事件处理方法OnClick()</p>
+<p>焦点事件（View.OnFocusChangeListener）组件得到或者失去焦点时产生该事件，处理方法OnFocusChange()</p>
+<p>按键事件（View.OnKeyListener）用户按下或者释放设备某个按键时产生，处理方法OnKey()</p>
+<p>触碰事件(View.OnTouchListener)设备具有触摸功能，触碰屏幕发生该事件，处理方法OnTouch()</p>
+<p>创建上下文菜单事件(View.OnCreateContextMenuListener)创建上下文菜单时产生该事件，处理方法onCreateContextMenu()</p>
+<p>&nbsp;</p>
+<p>事件处理步骤：</p>
+<p>1、创建事件监听器</p>
+<p>2、响应事件组件注册事件监听器</p>
+<p>3、在事件处理方法中实现代码</p>
+<p>OnCreate方法中：</p>
+<p>获取要触发的控件对象，mEdit1.setOnKeyListener(new OnKeyListener())</p>
+<p>{</p>
+<p>按键方法</p>
+<p>public boolen OnKey(View v,int keyCode,KeyEvent envent)</p>
+<p>{</p>
+<p>return false</p>
+<p>&nbsp;</p>
+<p>}</p>
+<p>}</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2013/09/12/20132015/Android控件RelativeLayout/" itemprop="url">
+                  Android控件之RelativeLayout控件属性
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2013-09-12T13:02:59+08:00" content="2013-09-12">
+              2013-09-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>layout_alignParentBottom=ture/false    当前控件低端与父控件的低端对齐(重合）</p>
+<p>layout_alignParentLeft=true/false        当前控件左端与父控件的左端对齐(重合）</p>
+<p>layout_alignParentRight=ture/false      当前控件右端与父控件的右端对齐(重合）</p>
+<p>layout_alignParentTop=true/false        当前控件上端与父控件的上端对齐(重合）</p>
+<p>layout_centerHorizontal  =true/false    当前控件位于父控件的横向中间位置（水平方向上的中间）  //针对RelativeLayout里面的子控件</p>
+<p>android:gravity=”center_horizontal”    针对RelativeLayout控件位置</p>
+<p>layout_centerInParent=true/false        当前控件位于父控件的纵横向中间位置（垂直方向上的中间）</p>
+<p>layout_above             使当前控件位于给出id控件的上方</p>
+<p>layout_below             使当前控件位于给出id控件的下方</p>
+<p>layout_toLeftOf          使当前控件位于给出id控件的左侧</p>
+<p>layout_toRightOf        使当前控件位于给出id控件的右侧</p>
+<p>layout_alignBottom     使当前控件与给出id控件的底部部重合<strong>(注意可用和给出id控件来对齐）</strong></p>
+<p>layout_alignLeft          使当前控件与给出id控件的左边重合</p>
+<p>layout_alignRight        使当前控件与给出id控件的右边重合</p>
+<p>layout_alignTop          使当前控件与给出id控件的顶部重合</p>
+<p>layout_alignBaseline    使当前控件的BaseLine与给出id控件t的BaseLine重合，这个主要用于Label或者其他包含文本的widgets。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -1231,217 +1464,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/08/27/20132015/MySQL与MongoDB对比学习/" itemprop="url">
-                  MySQL与MongoDB对比学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2013-08-27T18:32:48+08:00" content="2013-08-27">
-              2013-08-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/MongoDB/" itemprop="url" rel="index">
-                    <span itemprop="name">MongoDB</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/MongoDB/MySQL/" itemprop="url" rel="index">
-                    <span itemprop="name">MySQL</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>资源不浪费参见</p>
-<p><a href="http://tech.it168.com/a2011/0520/1193/000001193523.shtml" target="_blank" rel="external">http://tech.it168.com/a2011/0520/1193/000001193523.shtml</a></p>
-<p>与</p>
-<p><a href="http://www.2cto.com/database/201206/137270.html" target="_blank" rel="external">http://www.2cto.com/database/201206/137270.html</a></p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/08/27/20132015/python-django/" itemprop="url">
-                  Python Django
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2013-08-27T15:40:37+08:00" content="2013-08-27">
-              2013-08-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <h1 id="u521B_u5EFA_u9879_u76EE"><a href="#u521B_u5EFA_u9879_u76EE" class="headerlink" title="创建项目"></a>创建项目</h1><p>django-admin.py startproject mysite</p>
-<h1 id="u8FD0_u884C"><a href="#u8FD0_u884C" class="headerlink" title="运行"></a>运行</h1><pre>python manage.py runserver</pre>
-<pre># 访问</pre>
-<pre>http://localhost:8000</pre>
-<pre># 添加应用</pre>
-<pre>python manage.py startapp mybolg</pre>
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1488,14 +1510,14 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">183</span>
+              <span class="site-state-item-count">185</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>

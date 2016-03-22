@@ -207,6 +207,232 @@
 
     
     
+      
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/10/08/20132015/cmake-error/" itemprop="url">
+                  cmake error your cxx compiler cmake_cxx_compiler-notfound was not found. ubuntu
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-10-08T05:13:08+08:00" content="2014-10-08">
+              2014-10-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>解决办法:</p>
+<ol>
+<li><p>sudo apt-get install g++</p>
+</li>
+<li><p>sudo apt-get install build-essential</p>
+</li>
+</ol>
+<p>参考:</p>
+<p><a href="http://stackoverflow.com/questions/18126732/cmake-fails-when-building-opencv-ubuntu" target="_blank" rel="external">http://stackoverflow.com/questions/18126732/cmake-fails-when-building-opencv-ubuntu</a></p>
+<p><a href="http://conkeyn.iteye.com/blog/1405911" target="_blank" rel="external">http://conkeyn.iteye.com/blog/1405911</a></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/09/30/20132015/ubuntu-error-libc6/" itemprop="url">
+                  libc6 : Depends: libc-bin (= 2.15-0ubuntu10.4) but 2.15-0ubuntu10.7 is to be installed
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-09-30T07:27:01+08:00" content="2014-09-30">
+              2014-09-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p><table></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td class="votecell"></td></p>
+<p><div class="vote">正解：</div></p>
+<p><td class="answercell"></td></p>
+<div class="post-text">
+
+<p>运行 :</p>
+<pre><code>sudo dpkg -r libc6
+
+sudo rm /var/cache/apt/archives/libc6_2.15-0ubuntu10.5_i386.deb
+`&lt;/pre&gt;
+上面的命令正常，打开下面文件 :
+&lt;pre&gt;`gksudo gedit /var/lib/dpkg/status
+</code></pre><p>删除libc6相关的整个节点内容：</p>
+<p><code>Package : libc6</code></p>
+<p>运行</p>
+<p>sudo apt-get -f install</p>
+<p></p></div><br><br><br><br>&nbsp;<p></p>
+<p>参考：<a href="http://askubuntu.com/questions/488671/libc6-depends-libc-bin-2-15-0ubuntu10-but-2-15-0ubuntu10-5-is-installed" target="_blank" rel="external">http://askubuntu.com/questions/488671/libc6-depends-libc-bin-2-15-0ubuntu10-but-2-15-0ubuntu10-5-is-installed</a></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -1074,207 +1300,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/09/04/20132015/flask-sqlalchemy-e5-85-b3-e8-81-94-e5-85-b3-e7-b3-bb-e8-af-b4-e6-98-8e/" itemprop="url">
-                  flask-sqlalchemy  关联关系说明
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2014-09-04T03:49:15+08:00" content="2014-09-04">
-              2014-09-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>sqlalchemy.exc.AmbiguousForeignKeysError:<br>Could not determine join condition between parent/child tables on relationship UserInfo.role - there are multiple foreign key paths linking the tables.<br>Specify the ‘foreign_keys’ argument, providing a list of those columns which should be counted as containing a foreign key reference to the parent table.</p>
-<p>异常说的是。UserInfo.role 引用关系不明确写法：<strong><span style="color: #008000;"> role = db.relationship(‘RoleInfo’)  </span></strong></p>
-<p>正确写法如下举例：</p>
-<p>class UserInfo(db.Model):<br>——- id = db.Column(db.Integer, primary_key=True)<br>——- role_id = db.Column(db.Integer, db.ForeignKey(‘role_info.id’))<br>——-<strong><span style="color: #008000;"> role = db.relationship(‘RoleInfo’, foreign_keys=[role_id])</span></strong><br>——- creator = db.Column(db.Integer, db.ForeignKey(‘user_info.id’))<br>——- creator_obj = db.relationship(‘UserInfo’, <strong><span style="color: #800000;">remote_side=id</span></strong>)</p>
-<p>class RoleInfo(db.Model):<br>——id = db.Column(db.Integer, primary_key=True)<br>——creator = db.Column(db.Integer, db.ForeignKey(‘user_info.id’))<br>——creator_obj = db.relationship(‘UserInfo’,<strong><span style="color: #800000;"> primaryjoin=’RoleInfo.creator==UserInfo.id’</span></strong>)</p>
-<p>&nbsp;</p>
-<p>关联自己需要用到 <strong><span style="color: #800000;">remote_side</span></strong> 属性。</p>
-<p>&nbsp;</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/08/29/20132015/android自定义GridView网格线/" itemprop="url">
-                  Android  自定义GridView网格线
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2014-08-29T07:34:02+08:00" content="2014-08-29">
-              2014-08-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>这个问题遗留了好长时间，一直无从下手，今天终于解决了</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<div class="line number1 index0 alt2" style="color: #000000;"><code>public class LineGridView extends GridView{</code></div><br><div class="line number2 index1 alt1" style="color: #000000;"><code>``public LineGridView(Context context) {</code></div><br><div class="line number3 index2 alt2" style="color: #000000;"><code>``super``(context);</code></div><br><div class="line number4 index3 alt1" style="color: #000000;"><code>``// TODO Auto-generated constructor stub</code></div><br><div class="line number5 index4 alt2" style="color: #000000;"><code>``}</code></div><br><div class="line number6 index5 alt1" style="color: #000000;"><code>``public LineGridView(Context context, AttributeSet attrs) {</code></div><br><div class="line number7 index6 alt2" style="color: #000000;"><code>``super``(context, attrs);</code></div><br><div class="line number8 index7 alt1" style="color: #000000;"><code>``}</code></div><br><div class="line number9 index8 alt2" style="color: #000000;"><code>``public LineGridView(Context context, AttributeSet attrs, int defStyle) {</code></div><br><div class="line number10 index9 alt1" style="color: #000000;"><code>``super``(context, attrs, defStyle);</code></div><br><div class="line number11 index10 alt2" style="color: #000000;"><code>``}</code></div><br><div class="line number12 index11 alt1" style="color: #000000;"><code>``@Override</code></div><br><div class="line number13 index12 alt2" style="color: #000000;"><code>``protected void dispatchDraw(Canvas canvas){</code></div><br><div class="line number14 index13 alt1" style="color: #000000;"><code>``super``.dispatchDraw(canvas);</code></div><br><div class="line number15 index14 alt2" style="color: #000000;"><code>``View localView1 = getChildAt(0);</code></div><br><div class="line number16 index15 alt1" style="color: #000000;"><code>``int column = getWidth() / localView1.getWidth();</code></div><br><div class="line number17 index16 alt2" style="color: #000000;"><code>``int childCount = getChildCount();</code></div><br><div class="line number18 index17 alt1" style="color: #000000;"><code>``Paint localPaint;</code></div><br><div class="line number19 index18 alt2" style="color: #000000;"><code>``localPaint = ``new</code> <code>Paint();</code></div><br><div class="line number20 index19 alt1" style="color: #000000;"><code>``localPaint.setStyle(Paint.Style.STROKE);</code></div><br><div class="line number21 index20 alt2" style="color: #000000;"><code>``localPaint.setColor(getContext().getResources().getColor(R.color.grid_line));</code></div><br><div class="line number22 index21 alt1" style="color: #000000;"><code>``for``(int i = 0;i &amp;lt; childCount;i++){</code></div><br><div class="line number23 index22 alt2" style="color: #000000;"><code>``View cellView = getChildAt(i);</code></div><br><div class="line number24 index23 alt1" style="color: #000000;"><code>``if``((i + 1) % column == 0&amp;amp;&amp;amp;i&amp;lt;column){         // 第一列画头顶线显示底部线</code></div><br><div class="line number25 index24 alt2" style="color: #000000;"><code>``canvas.drawLine(cellView.getLeft(), cellView.getBottom(), cellView.getRight(), cellView.getBottom(), localPaint);</code></div><br><div class="line number26 index25 alt1" style="color: #000000;"><code>``}``else</code> <code>if``((i + 1) &amp;gt; (childCount - (childCount % column))){       // 边界处理（最后一行）画右边垂直隔离线</code></div><br><div class="line number27 index26 alt2" style="color: #000000;"><code>``canvas.drawLine(cellView.getRight(), cellView.getTop(), cellView.getRight(), cellView.getBottom(), localPaint);</code></div><br><div class="line number28 index27 alt1" style="color: #000000;"><code>``}``else``{</code></div><br><div class="line number28 index27 alt1" style="color: #000000;">                                 if（i&lt;column）  // 其他列，画右边隔离线，与底线</div><br><div class="line number28 index27 alt1" style="color: #000000;">                                  {</div><br><div class="line number28 index27 alt1" style="color: #000000;"></div><br><div class="line number29 index28 alt2" style="color: #000000;"><code>``canvas.drawLine(cellView.getRight(), cellView.getTop(), cellView.getRight(), cellView.getBottom(), localPaint);</code></div><br><div class="line number30 index29 alt1" style="color: #000000;"><code>``canvas.drawLine(cellView.getLeft(), cellView.getBottom(), cellView.getRight(), cellView.getBottom(), localPaint);</code></div><br><div class="line number30 index29 alt1" style="color: #000000;"><code>}</code></div><br><div class="line number30 index29 alt1" style="color: #000000;">                         else//如果gridview分页，第一页有底线，这样可以去掉底线， // 其他列，画右边隔离线</div><br><div class="line number30 index29 alt1" style="color: #000000;">                               {</div><br><div class="line number30 index29 alt1" style="color: #000000;"><code>``canvas.drawLine(cellView.getRight(), cellView.getTop(), cellView.getRight(), cellView.getBottom(), localPaint);</code></div><br><div class="line number30 index29 alt1" style="color: #000000;">                                 }</div><br><div class="line number31 index30 alt2" style="color: #000000;"><code>``}</code></div><br><div class="line number32 index31 alt1" style="color: #000000;"><code>``}</code></div><br><div class="line number32 index31 alt1" style="color: #000000;">               // 确保最后一行，没有填满的单元格右侧也好垂直隔离线（注意与上面代码 else if 的关系）</div><br><div class="line number33 index32 alt2" style="color: #000000;"><code>``if``(childCount % column != 0){</code></div><br><div class="line number34 index33 alt1" style="color: #000000;"><code>``for``(int j = 0 ;j &amp;lt; (column-childCount % column) ; j++){</code></div><br><div class="line number35 index34 alt2" style="color: #000000;"><code>``View lastView = getChildAt(childCount - 1);</code></div><br><div class="line number36 index35 alt1" style="color: #000000;"><code>``canvas.drawLine(lastView.getRight() + lastView.getWidth() * j, lastView.getTop(), lastView.getRight() + lastView.getWidth()* j, lastView.getBottom(), localPaint);</code></div><br><div class="line number37 index36 alt2" style="color: #000000;"><code>``}</code></div><br><div class="line number38 index37 alt1" style="color: #000000;"><code>``}</code></div><br><div class="line number39 index38 alt2" style="color: #000000;"><code>``}</code></div><br><div class="line number40 index39 alt1" style="color: #000000;"><code>}</code></div><br><div class="line number40 index39 alt1" style="color: #000000;"></div><br><div class="line number40 index39 alt1" style="color: #000000;"><br><br>在<code>dispatchDraw</code>方法中，我们对每一个子view的边界按照一定的方式绘上了边框，一般一个格子只需绘制其中两条边，需要注意的是最边上的格子需要特殊处理。<code>super``.dispatchDraw(canvas);</code>一定要调用，不然格子中的内容（子view）就得不到绘制的机会，结果就如下面这样：<br><br><img src="http://www.jcodecraeer.com/uploads/20131227/13881504312676.png" alt="" title="device-2013-12-27-211055.png"><br><br></div>
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1321,14 +1346,14 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">183</span>
+              <span class="site-state-item-count">185</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>

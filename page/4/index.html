@@ -207,6 +207,244 @@
 
     
     
+      
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/11/22/20132015/android-alarmmanager-use/" itemprop="url">
+                  Android  AlarmManager的使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-11-22T09:13:40+08:00" content="2014-11-22">
+              2014-11-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>一、设置闹钟时Type的差别<br>/<em> 获取闹钟管理的实例 </em>/<br>AlarmManager  am = (AlarmManager) getSystemService(ALARM_SERVICE);   am.setRepeating(AlarmManager.RTC_WAKEUP,selectTime,(24 <em> 60 </em> 60 * 1000), pendingIntent);</p>
+<ol>
+<li>AlarmManager .RTC_WAKEUP：是绝对时间，能唤醒系统，系统值为0，如果系统设置的什么时间那么它就会按照设置的时间算，它不是代表延迟时间，没有按照真实时间流逝,如果需要设置时间差则是System.currentTimeMillis()+时间差（延迟时间），System.currentTimeMillis()代表从1970.1.1到现在的毫秒，</li>
+</ol>
+<p>2.AlarmManager.ELAPSED_REALTIME_WAKEUP：是相对时间，能唤醒系统，系统值为      3，如果要使用这个类型，应该调用SystemClock.elapsedRealtime()获取相对时间+设定的延迟时间</p>
+<p>3、AlarmManager.PRC:用法和第一种一样，和第一种差别主要是这个不会唤醒系统</p>
+<p>4、AlarmManager.ELAPSED_REALTIME :用法和第二种用法一样，和第二种差别是这个不会唤醒系统</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>二、Demo的实现</p>
+<p>&nbsp;</p>
+<p>public void setCalendar(int hourOfDay, int minute) {<br>// 这里时区需要设置一下，不然会有8个小时的时间差<br>calendar.setTimeZone(TimeZone.getTimeZone(“GMT+8”));<br>calendar.setTimeInMillis(System.currentTimeMillis());<br>calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);<br>calendar.set(Calendar.MINUTE, minute);<br>calendar.set(Calendar.SECOND, 0);<br>calendar.set(Calendar.MILLISECOND, 0);</p>
+<p>String tmpS = format(hourOfDay) + “:”+ format(minute);<br>tv_time.setText(tmpS);</p>
+<p>long systemTime = System.currentTimeMillis();<br>// 选择的每天定时时间<br>selectTime = calendar.getTimeInMillis();<br>// 如果当前时间大于设置的时间，那么就从第二天的设定时间开始<br>if(systemTime &gt; selectTime) {<br>//Toast.makeText(AlarmWarnActivity.this,”设置的时间小于当前时间”, Toast.LENGTH_SHORT).show();<br>calendar.add(Calendar.DAY_OF_MONTH, 1);<br>selectTime = calendar.getTimeInMillis();<br>}<br>// 计算现在时间到设定时间的时间差<br>firstTime=selectTime - systemTime;<br>long days = firstTime / (1000 <em> 60 </em> 60 <em> 24);<br>long hours = (firstTime-days</em>(1000 <em> 60 </em> 60 <em> 24))/(1000</em> 60 <em> 60);<br>long minutes = (firstTime-days</em>(1000 <em> 60 </em> 60 <em> 24)-hours</em>(1000<em> 60 </em> 60))/(1000* 60)+1;<br>if(minutes==60){<br>hours=hours+1;<br>minutes=0;<br>}<br>String str=”已将闹钟设置为距现在起”;<br>if(days!=0){<br>str+=””+days+”天”;<br>}<br>if(hours!=0){<br>str+=hours+”小时”;<br>}<br>if(minutes!=0){<br>str+=minutes+”分”;<br>}<br>if(days==0&amp;&amp;hours==0&amp;&amp;minutes==0){<br>str+=”0分”;<br>}<br>str+=”后提醒。”;<br>setAlarmAlert();<br>Toast.makeText(ReadBibleActivity.this, str, Toast.LENGTH_SHORT).show();</p>
+<p>}</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>private void setAlarmAlert(){<br>read.date=tv_time.getText().toString();<br>read.name=tv_sound_path.getText().toString();<br>if(ring_uri==null){<br>ring_uri=RingtoneManager.getActualDefaultRingtoneUri(this, RingtoneManager.TYPE_ALARM);<br>Ringtone ringtone=RingtoneManager.getRingtone(this, ring_uri);<br>String title=getString(R.string.tv_no_ringtone);<br>if(ringtone!=null)<br>{<br>title=ringtone.getTitle(this);<br>}<br>tv_sound_path.setText(title);<br>}<br>read.path=ring_uri.toString();<br>read.theFirstNotifyBeginTime =selectTime;// 存储响铃时间<br>read.lastNotifyTime=0;<br>SharedPreferenceUtil.setReadBible(ReadBibleActivity.this,read);<br>//如果第一个参数是ELAPSED_REALTIME_WAKEUP，第二个参数就要使用SystemClock.elapsedRealtime()，如果使用RTC_WAKEUP则要使用System.currentTimeMillis() 当前系统时间<br>//firstTime=SystemClock.elapsedRealtime()+firstTime;</p>
+<p>/<em> 建立Intent和PendingIntent，来调用目标组件 </em>/<br>Intent intent = new Intent(this,AlarmReceiver.class);<br>intent.putExtra(“activity”, “readbible”);<br>intent.setData(ring_uri);</p>
+<p>PendingIntent pendingIntent = PendingIntent.getBroadcast(ReadBibleActivity.this, Conf.NOTIFICATION_READING_ID,intent, PendingIntent.FLAG_UPDATE_CURRENT);<br>AlarmManager am;<br>/<em> 获取闹钟管理的实例 </em>/<br>am = (AlarmManager) getSystemService(ALARM_SERVICE);<br>/<em> 设置闹钟 </em>/<br>//am.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), pendingIntent);//设置一次性闹钟<br>/<em> 设置周期闹,第2个参数指运行时要等待的时间，也就是执行延迟时间，第三个参数，表示执行的时间间隔， </em>/<br>am.setRepeating(AlarmManager.RTC_WAKEUP,selectTime,(24 <em> 60 </em> 60 * 1000), pendingIntent);<br>}</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>三、手机重启后设定的闹钟时间会被消为0，这时需要重新设置闹钟</p>
+<p>&lt;!– 手机开机广播 –&gt;<br>&lt;receiver android:name=”org.hdt.info.BootReceiver”&gt;<br>&lt;intent-filter&gt;<br>&lt;action android:name=”android.intent.action.BOOT_COMPLETED” /&gt;<br>&lt;/intent-filter&gt;<br>&lt;/receiver&gt;</p>
+<p>&nbsp;</p>
+<p>public class BootReceiver extends BroadcastReceiver {</p>
+<p>@Override<br>public void onReceive(Context context, Intent intent) {<br>Calendar calendar = Calendar.getInstance();<br>// 这里时区需要设置一下，不然会有8个小时的时间差<br>calendar.setTimeZone(TimeZone.getTimeZone(“GMT+8”));<br>// 得到当前时间并设置到日历里面<br>calendar.setTimeInMillis(System.currentTimeMillis());<br>String action = intent.getAction();<br>if (action.equals(Intent.ACTION_BOOT_COMPLETED)) {<br>// 重新计算闹铃时间，读取闹钟响铃时间<br>ReadBible read = SharedPreferenceUtil.getReadBible(context);</p>
+<p>String readSwitch=SharedPreferenceUtil.getReadBibleSwitch(context);</p>
+<p>if (read != null&amp;&amp;readSwitch.equals(“ok”)) {</p>
+<p>long nextNofifyTime;<br>if( read.theFirstNotifyBeginTime&lt;System.currentTimeMillis()){ //如果闹铃时间小于当前时间，闹铃过期<br>nextNofifyTime = 24 <em> 60 </em> 60 * 1000 + read.theFirstNotifyBeginTime;<br>}else{//闹铃还没响<br>nextNofifyTime=read.theFirstNotifyBeginTime;<br>Log.v(“Log.v”, “读经PPPPPPPPPPPPPPPPPPPPPP”+nextNofifyTime);<br>}</p>
+<p>/<em> 建立Intent和PendingIntent，来调用目标组件 </em>/<br>intent = new Intent(context, AlarmReceiver.class);<br>intent.putExtra(“activity”, “readbible”);<br>Uri uri = null;<br>if (read.path != null) {<br>uri = Uri.parse(read.path);<br>}<br>intent.setData(uri);<br>read.theFirstNotifyBeginTime=nextNofifyTime;<br>read.lastNotifyTime=0;<br>SharedPreferenceUtil.setReadBible(context, read);<br>PendingIntent pendingIntent = PendingIntent.getBroadcast(context, Conf.NOTIFICATION_READING_ID, intent,PendingIntent.FLAG_UPDATE_CURRENT);<br>/<em> 获取闹钟管理的实例 </em>/<br>AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);<br>/<em> 设置周期闹,第2个参数指运行时要等待的时间，也就是执行延迟时间，第三个参数，表示执行的时间间隔， </em>/<br>am.setRepeating(AlarmManager.RTC_WAKEUP,nextNofifyTime, (24 <em> 60 </em> 60 <em> 1000), pendingIntent);<br>}<br>ReadBible alarmWarn = SharedPreferenceUtil.getAlarmWarn(context);<br>String alarmWarnSwitch=SharedPreferenceUtil.getAlarmWarnSwitch(context);<br>if(alarmWarn!=null&amp;&amp;alarmWarnSwitch.equals(“ok”)){<br>long nextNofifyTime_Alarm;<br>if( alarmWarn.theFirstNotifyBeginTime&lt;System.currentTimeMillis()){ //如果闹铃时间小于当前时间，闹铃过期<br>nextNofifyTime_Alarm = 24 </em> 60 <em> 60 </em> 1000 + alarmWarn.theFirstNotifyBeginTime;<br>}else{//闹铃还没响<br>nextNofifyTime_Alarm=alarmWarn.theFirstNotifyBeginTime;<br>Log.v(“Log.v”, “音频PPPPPPPPPPPPPPPPPPPPPP”+nextNofifyTime_Alarm);<br>}<br>// if(nextNofifyTime&lt;=System.currentTimeMillis()){<br>// nextNofifyTime=System.currentTimeMillis();<br>// Log.v(“Log.v”, “读经PPPPPPPPPPPPPPPPPPPPPP”);<br>// }<br>alarmWarn.theFirstNotifyBeginTime=nextNofifyTime_Alarm;<br>alarmWarn.lastNotifyTime=0;<br>SharedPreferenceUtil.setAlarmWarn(context, alarmWarn);<br>//nextNofifyTime = SystemClock.elapsedRealtime() + nextNofifyTime;<br>/<em> 建立Intent和PendingIntent，来调用目标组件 </em>/<br>LocalVideo video=new LocalVideo();<br>video.name=alarmWarn.name;<br>video.savePath=alarmWarn.path;<br>Intent intent_alarm = new Intent(context,AlarmReceiver.class);<br>intent_alarm.putExtra(“activity”, “audioplayer”);<br>intent_alarm.putExtra(“URL”, video);<br>PendingIntent pendingIntent = PendingIntent.getBroadcast(context, Conf.NOTIFICATION_AUDIO_ID, intent_alarm,PendingIntent.FLAG_UPDATE_CURRENT);<br>/<em> 获取闹钟管理的实例 </em>/<br>AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);<br>/<em> 设置周期闹,第2个参数指运行时要等待的时间，也就是执行时间，第三个参数，表示执行的时间间隔， </em>/<br>am.setRepeating(AlarmManager.RTC_WAKEUP,nextNofifyTime_Alarm, (24 <em> 60 </em> 60 * 1000), pendingIntent);<br>}<br>}</p>
+<p>}</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/11/10/20132015/android-Notification/" itemprop="url">
+                  Android的Notification
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-11-10T07:55:16+08:00" content="2014-11-10">
+              2014-11-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>一、Notification 的使用</p>
+<p>private void setNotification(Context context,Uri uri) {<br>Intent intent = new Intent();<br>String lastReader = SharedPreferenceUtil.lastReader(context);<br>intent.setClass(context, BibleActivity.class);<br>intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);<br>//PendingIntent.FLAG_UPDATE_CURRENT:Extra会被更新为最后一个传入的Intent的Extra<br>PendingIntent pendingNotify = PendingIntent.getActivity(context, 0,intent,PendingIntent.FLAG_UPDATE_CURRENT);<br>// 第一个参数图标，第二个参数，状态栏显示的文本提示,第三个参数通知产生的时间<br>long when = System.currentTimeMillis();<br>Notification notification = new Notification(R.drawable.stat_notify_alarm, context.getString(R.string.toast_read_bible), when);<br>notification.setLatestEventInfo(context, context.getString(R.string.toast_read_bible), context.getString(R.string.notification_content),pendingNotify);<br>if(uri!=null)<br>notification.sound=uri;<br>else{<br>notification.defaults|=Notification.DEFAULT_SOUND; //默认铃声<br>}<br>Log.v(“Log.v”, “:::::::::::::::::::::::::::::::::::::::”+uri);<br>// String<br>// url=Environment.getExternalStorageDirectory().getPath()+”/hdt/video/20140810-02wuweiqing.mp3”;<br>notification.defaults |= Notification.DEFAULT_VIBRATE;// 振动模式<br>// 如果想要让声音持续重复直到用户对通知做出反应，则可以在notification的flags字段增加”FLAG_INSISTENT”<br>notification.flags |= Notification.FLAG_ONGOING_EVENT| Notification.FLAG_AUTO_CANCEL;<br>notification.contentIntent = pendingNotify; // |<br>// Notification.FLAG_NO_CLEAR;//表明在点击了通知栏中的”清除通知”后，此通知不清除，<br>NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);<br>nm.notify(0, notification);<br>}</p>
+<p>&nbsp;</p>
+<p>二、intent.setFlags的设置</p>
+<p><span lang="EN-US">      </span><span lang="EN-US">//</span>使用这个标志，如果正在启动的<span lang="EN-US">Activity</span>的<span lang="EN-US">Task</span>已经在运行的话，那么，新的<span lang="EN-US">Activity</span>将不会启动；代替的，当前<span lang="EN-US">Task</span>会简单的移入前台。</p>
+<p><span lang="EN-US">       intent.setFlags(Intent.</span>_<span lang="EN-US">FLAG_ACTIVITY_NEW<em>TASK</em></span><span lang="EN-US">);</span></p>
+<p>三、 nm.notify(id, notification)：id 在一个app里面不能一样，要不会覆盖前面的通知栏，或不弹出通知栏，这点尤为重要</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -1115,227 +1353,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/10/08/20132015/cmake-error/" itemprop="url">
-                  cmake error your cxx compiler cmake_cxx_compiler-notfound was not found. ubuntu
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2014-10-08T05:13:08+08:00" content="2014-10-08">
-              2014-10-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>解决办法:</p>
-<ol>
-<li><p>sudo apt-get install g++</p>
-</li>
-<li><p>sudo apt-get install build-essential</p>
-</li>
-</ol>
-<p>参考:</p>
-<p><a href="http://stackoverflow.com/questions/18126732/cmake-fails-when-building-opencv-ubuntu" target="_blank" rel="external">http://stackoverflow.com/questions/18126732/cmake-fails-when-building-opencv-ubuntu</a></p>
-<p><a href="http://conkeyn.iteye.com/blog/1405911" target="_blank" rel="external">http://conkeyn.iteye.com/blog/1405911</a></p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/09/30/20132015/ubuntu-error-libc6/" itemprop="url">
-                  libc6 : Depends: libc-bin (= 2.15-0ubuntu10.4) but 2.15-0ubuntu10.7 is to be installed
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2014-09-30T07:27:01+08:00" content="2014-09-30">
-              2014-09-30
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p><table></table></p>
-<p><tbody></tbody></p>
-<p><tr></tr></p>
-<p><td class="votecell"></td></p>
-<p><div class="vote">正解：</div></p>
-<p><td class="answercell"></td></p>
-<div class="post-text">
-
-<p>运行 :</p>
-<pre><code>sudo dpkg -r libc6
-
-sudo rm /var/cache/apt/archives/libc6_2.15-0ubuntu10.5_i386.deb
-`&lt;/pre&gt;
-上面的命令正常，打开下面文件 :
-&lt;pre&gt;`gksudo gedit /var/lib/dpkg/status
-</code></pre><p>删除libc6相关的整个节点内容：</p>
-<p><code>Package : libc6</code></p>
-<p>运行</p>
-<p>sudo apt-get -f install</p>
-<p></p></div><br><br><br><br>&nbsp;<p></p>
-<p>参考：<a href="http://askubuntu.com/questions/488671/libc6-depends-libc-bin-2-15-0ubuntu10-but-2-15-0ubuntu10-5-is-installed" target="_blank" rel="external">http://askubuntu.com/questions/488671/libc6-depends-libc-bin-2-15-0ubuntu10-but-2-15-0ubuntu10-5-is-installed</a></p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1382,14 +1399,14 @@ sudo rm /var/cache/apt/archives/libc6_2.15-0ubuntu10.5_i386.deb
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">183</span>
+              <span class="site-state-item-count">185</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>

@@ -207,6 +207,204 @@
 
     
     
+      
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2013/11/12/20132015/python全局变量global/" itemprop="url">
+                  python全局变量global
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2013-11-12T09:09:53+08:00" content="2013-11-12">
+              2013-11-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>python 的全局变量global 声明好纠结，在class上方声明或在<strong>init</strong> 中声明，在def 中可以直接用，但不可以修改。在def中修改，需要在def重新声明一次。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">global</span> a</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">()</span>:</span></span><br><span class="line">    a = <span class="number">1</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">ta</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">print</span> a</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">tb</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">global</span> a</span><br><span class="line">        a += <span class="number">1</span></span><br><span class="line">        <span class="keyword">print</span> a</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">tc</span><span class="params">()</span>:</span></span><br><span class="line">        a += <span class="number">1</span></span><br><span class="line">        <span class="keyword">print</span> a</span><br></pre></td></tr></table></figure></p>
+<p>以上：<br>ta() 结果是： 1<br>tb() 结果是： 2<br>tc() 结果是： 异常error</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2013/11/11/20132015/批处理获取盘符和路径/" itemprop="url">
+                  批处理获取盘符/路径
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2013-11-11T06:25:05+08:00" content="2013-11-11">
+              2013-11-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/cmd/" itemprop="url" rel="index">
+                    <span itemprop="name">cmd</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>@echo off<br>echo 当前盘符：%~d0<br>echo 当前盘符和路径：%~dp0<br>echo 当前批处理全路径：%~f0<br>echo 当前盘符和路径的短文件名格式：%~sdp0<br>echo 当前CMD默认目录：%cd%<br>pause<br>实例：</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@echo</span> on</span><br><span class="line"><span class="variable">%~</span>d0</span><br><span class="line">cd <span class="variable">%~</span>dp0</span><br><span class="line"><span class="keyword">python</span> newExecuteFile.py</span><br><span class="line"><span class="keyword">pause</span></span><br></pre></td></tr></table></figure>
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -1084,223 +1282,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/10/10/20132015/linux不需要mysql密码连接数据/" itemprop="url">
-                  linux不需要mysql密码连接数据
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2013-10-10T15:19:07+08:00" content="2013-10-10">
-              2013-10-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index">
-                    <span itemprop="name">MySQL</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>redhat:</p>
-<ol>
-<li><h1 id="service_mysql_stop"><a href="#service_mysql_stop" class="headerlink" title="service mysql stop"></a>service mysql stop</h1></li>
-<li><h1 id="service_mysql_start__u2013skip-grant-tables"><a href="#service_mysql_start__u2013skip-grant-tables" class="headerlink" title="service mysql start  –skip-grant-tables"></a>service mysql start  –skip-grant-tables</h1></li>
-<li><h1 id="mysql_-u_root_-p__28Enter__u5BC6_u7801_u4E3A_u7A7A_29"><a href="#mysql_-u_root_-p__28Enter__u5BC6_u7801_u4E3A_u7A7A_29" class="headerlink" title="mysql -u root -p    (Enter 密码为空)"></a>mysql -u root -p    (Enter 密码为空)</h1></li>
-</ol>
-<p>至此已连接上mysql. 推荐你修改密码重新登录，如下继续： (当然你可以创建新用户，具体请自行Google)</p>
-<ol>
-<li><h1 id="update_mysql-user_set_password__3D_PASSWORD_28_u201C_u4F60_u7684_u5BC6_u7801_u201D_29_where_user_3D_u2019root_u2019"><a href="#update_mysql-user_set_password__3D_PASSWORD_28_u201C_u4F60_u7684_u5BC6_u7801_u201D_29_where_user_3D_u2019root_u2019" class="headerlink" title="update mysql.user set password = PASSWORD(“你的密码”) where user=’root’"></a>update mysql.user set password = PASSWORD(“你的密码”) where user=’root’</h1></li>
-<li><h1 id="exit"><a href="#exit" class="headerlink" title="exit"></a>exit</h1></li>
-<li><h1 id="service_mysql_restart"><a href="#service_mysql_restart" class="headerlink" title="service mysql restart"></a>service mysql restart</h1></li>
-<li><h1 id="mysql_-u_root_-p__28Enter__u8F93_u5165_u4F60_u7684_u5BC6_u7801_29"><a href="#mysql_-u_root_-p__28Enter__u8F93_u5165_u4F60_u7684_u5BC6_u7801_29" class="headerlink" title="mysql -u root -p   (Enter 输入你的密码)"></a>mysql -u root -p   (Enter 输入你的密码)</h1></li>
-</ol>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/10/10/20132015/mysql-error02/" itemprop="url">
-                  linux mysql的启动问题 ERROR! The server quit without updating PID file
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2013-10-10T14:51:53+08:00" content="2013-10-10">
-              2013-10-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <pre>控制台：</pre>
-<pre id="answer-content-185797375">ERROR! The server quit without updating PID file</pre>
-<pre id="answer-content-185797375">
-错误日志：
-080523 7:53:28 [ERROR] Can't start server : Bind on unix socket: Permission denied
-
-080523 7:53:28 [ERROR] Do you already have another mysqld server running on socket: /tmp/mysql.sock ? 
-
-排查为 mysql.sock 文件找不到的问题。
-
-参考文章:[http://blog.csdn.net/faye0412/article/details/7038290
-
-](http://blog.csdn.net/faye0412/article/details/7038290)**我的解决方法**： 重新复制一下 <span style="color: #0000ff;">**/usr/share/mysql/my-large.cnf**</span> 为 **<span style="color: #0000ff;">/etc/my.cnf</span>**  即ok
-
-参考文章：[http://blog.csdn.net/zengmuansha/article/details/9081281](http://blog.csdn.net/zengmuansha/article/details/9081281)</pre>
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1347,14 +1328,14 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">183</span>
+              <span class="site-state-item-count">185</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>

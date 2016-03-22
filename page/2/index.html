@@ -207,6 +207,216 @@
 
     
     
+      
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/12/28/2016/holdlg/mongodb/" itemprop="url">
+                  mongodb 安装
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-12-28T10:41:04+08:00" content="2015-12-28">
+              2015-12-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/MongoDB/" itemprop="url" rel="index">
+                    <span itemprop="name">MongoDB</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <h1 id="mongodb__u5B89_u88C5"><a href="#mongodb__u5B89_u88C5" class="headerlink" title="mongodb 安装"></a>mongodb 安装</h1><h2 id="1-_u6DFB_u52A0_u8BB8_u53EF"><a href="#1-_u6DFB_u52A0_u8BB8_u53EF" class="headerlink" title="1.添加许可"></a>1.添加许可</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:<span class="number">80</span> --recv <span class="number">7</span>F0CEB10</span><br></pre></td></tr></table></figure>
+<h2 id="2-_u5199_u5165_u5B89_u88C5_u5217_u8868"><a href="#2-_u5199_u5165_u5B89_u88C5_u5217_u8868" class="headerlink" title="2.写入安装列表"></a>2.写入安装列表</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.0 multiverse"</span> | sudo tee /etc/apt/sources.list.d/mongodb-org-<span class="number">3.0</span>.list</span><br></pre></td></tr></table></figure>
+<h2 id="3-_u66F4_u65B0_u6E90"><a href="#3-_u66F4_u65B0_u6E90" class="headerlink" title="3.更新源"></a>3.更新源</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+<h2 id="4-_u5728_u7EBF_u5B89_u88C5"><a href="#4-_u5728_u7EBF_u5B89_u88C5" class="headerlink" title="4.在线安装"></a>4.在线安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y mongodb-org</span><br></pre></td></tr></table></figure>
+<h2 id="5-_u542F_u52A8_uFF0C_u505C_u6B62_uFF0C_u91CD_u542F"><a href="#5-_u542F_u52A8_uFF0C_u505C_u6B62_uFF0C_u91CD_u542F" class="headerlink" title="5.启动，停止，重启"></a>5.启动，停止，重启</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo service mongod start</span><br><span class="line">sudo service mongod stop</span><br><span class="line">sudo service mongod restart</span><br></pre></td></tr></table></figure>
+<h2 id="6-_u5378_u8F7Dmongodb_uFF0C_u5220_u9664_u76EE_u5F55"><a href="#6-_u5378_u8F7Dmongodb_uFF0C_u5220_u9664_u76EE_u5F55" class="headerlink" title="6.卸载mongodb，删除目录"></a>6.卸载mongodb，删除目录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get purge mongodb-org*</span><br><span class="line">sudo rm -r /var/<span class="built_in">log</span>/mongodb</span><br><span class="line">sudo rm -r /var/lib/mongodb</span><br></pre></td></tr></table></figure>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/12/28/2016/holdlg/mysql/" itemprop="url">
+                  MySQL5.6设置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-12-28T10:40:04+08:00" content="2015-12-28">
+              2015-12-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <h1 id="My_MySQL_Book"><a href="#My_MySQL_Book" class="headerlink" title="My MySQL Book"></a>My MySQL Book</h1><h2 id="1-_u5B89_u88C5MySQL5-6"><a href="#1-_u5B89_u88C5MySQL5-6" class="headerlink" title="1.安装MySQL5.6"></a>1.安装MySQL5.6</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get <span class="operator"><span class="keyword">install</span> mysql-<span class="keyword">server</span>-<span class="number">5.6</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="2-_u8BBE_u7F6E_u7F16_u7801_2Csudo_vim_/etc/mysql/my-cnf"><a href="#2-_u8BBE_u7F6E_u7F16_u7801_2Csudo_vim_/etc/mysql/my-cnf" class="headerlink" title="2.设置编码,sudo vim /etc/mysql/my.cnf"></a>2.设置编码,sudo vim /etc/mysql/my.cnf</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line">default-character-<span class="operator"><span class="keyword">set</span>=utf8</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line"><span class="built_in">character</span>-<span class="keyword">set</span>-<span class="keyword">server</span>=utf8  </span><br><span class="line"><span class="keyword">collation</span>-<span class="keyword">server</span>=utf8_general_ci</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-_u67E5_u770B_u7F16_u7801_u683C_u5F0F"><a href="#3-_u67E5_u770B_u7F16_u7801_u683C_u5F0F" class="headerlink" title="3.查看编码格式"></a>3.查看编码格式</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SHOW</span> <span class="keyword">VARIABLES</span> <span class="keyword">LIKE</span> <span class="string">'character_set_%'</span>;</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-_u4FEE_u6539_u5BC6_u7801"><a href="#4-_u4FEE_u6539_u5BC6_u7801" class="headerlink" title="4.修改密码"></a>4.修改密码</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">update</span> mysql.<span class="keyword">user</span> <span class="keyword">set</span> <span class="keyword">password</span>=<span class="keyword">PASSWORD</span>(<span class="string">""</span>) <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">"root"</span>;</span></span><br><span class="line"><span class="operator"><span class="keyword">flush</span> <span class="keyword">privileges</span>;</span></span><br></pre></td></tr></table></figure>
+<h2 id="5-_u542F_u7528_u8FDC_u7A0B_u94FE_u63A5"><a href="#5-_u542F_u7528_u8FDC_u7A0B_u94FE_u63A5" class="headerlink" title="5.启用远程链接"></a>5.启用远程链接</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1、授权</span><br><span class="line">    <span class="operator"><span class="keyword">grant</span> all <span class="keyword">privileges</span> <span class="keyword">on</span> *.*  <span class="keyword">to</span> <span class="string">'root'</span>@<span class="string">'%'</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'root'</span> <span class="keyword">with</span> <span class="keyword">grant</span> <span class="keyword">option</span>;</span></span><br><span class="line">    <span class="operator"><span class="keyword">flush</span> <span class="keyword">privileges</span>;</span></span><br><span class="line">2、修改/etc/mysql/my.conf</span><br><span class="line">    找到bind-address = 127.0.0.1 这一行</span><br><span class="line">    改为bind-address = 0.0.0.0   即可</span><br><span class="line">3、重启</span><br><span class="line">    sudo service mysql restart</span><br></pre></td></tr></table></figure>
+<h2 id="6-_windows_mysql_u670D_u52A1_u6CE8_u518C_u548C_u5378_u8F7D"><a href="#6-_windows_mysql_u670D_u52A1_u6CE8_u518C_u548C_u5378_u8F7D" class="headerlink" title="6. windows mysql服务注册和卸载"></a>6. windows mysql服务注册和卸载</h2><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">mysqld</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">install</span> <span class="comment">MySQL5</span><span class="string">.</span><span class="comment">6</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">defaults</span><span class="literal">-</span><span class="comment">file="my</span><span class="string">.</span><span class="comment">ini"</span></span><br><span class="line"><span class="comment">mysqld</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">remove</span> <span class="comment">MySQL5</span><span class="string">.</span><span class="comment">6</span></span><br></pre></td></tr></table></figure>
+<h2 id="7-_windows_pip_install_mysqldb"><a href="#7-_windows_pip_install_mysqldb" class="headerlink" title="7. windows pip install mysqldb"></a>7. windows pip install mysqldb</h2><ol>
+<li><a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#mysql-python" target="_blank" rel="external">下载</a></li>
+</ol>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -1029,211 +1239,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/03/24/20132015/intellij-idea-svn/" itemprop="url">
-                  intelliJ IDEA svn 插件
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-03-24T04:43:00+08:00" content="2015-03-24">
-              2015-03-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <ul>
-<li>intelliJ IDEA 提示：Can’t use Subversion command line client:svn</li>
-<li>原因： 没有svn的可执行命令。</li>
-<li><p>解决办法：</p>
-<pre><code>1.  如果没有安装 svn 可执行命令，可以在[http://subversion.apache.org/packages.html#windows](http://subversion.apache.org/packages.html#windows)下载，推荐 SlikSVN 只有核心部分,典型（typical）安装即可。
-</code></pre><ol>
-<li>在intellij IDEA界面，file-&gt;settings-&gt;version control -&gt; subversion -&gt; use command line client 填写路径 X:/yourpath/slivsvn/bin/svn.exe</li>
-<li>如果安装过了相关的svn可执行文件，重复2操作。</li>
-</ol>
-</li>
-</ul>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/03/23/20132015/sqlalchemy-pool-nullpool-error-exception-during-reset-or-similar/" itemprop="url">
-                  sqlalchemy.pool.NullPool
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-03-23T07:44:01+08:00" content="2015-03-23">
-              2015-03-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>异常错误信息： ProgrammingError: SQLite objects created in a thread can only be used in that same thread.The object was created in thread id 139938739435328 and this is thread id 139938622985984</p>
-<p>解决方法：<strong>connect_args={‘check_same_thread’:False}</strong><br>原因：sqlite3线程锁 的问题<br>其他：sqlalchemy 0.7 升级至 0.9 造成的。</p>
-<p>举例代码如下：<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy.pool <span class="keyword">import</span> StaticPool</span><br><span class="line">engine = create_engine(<span class="string">'sqlite://'</span>,</span><br><span class="line">                connect_args=&#123;<span class="string">'check_same_thread'</span>:<span class="keyword">False</span>&#125;,</span><br><span class="line">                poolclass=StaticPool)</span><br></pre></td></tr></table></figure></p>
-<p>参考：<a href="http://docs.sqlalchemy.org/en/rel_0_7/dialects/sqlite.html" target="_blank" rel="external">http://docs.sqlalchemy.org/en/rel_0_7/dialects/sqlite.html</a></p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1280,14 +1285,14 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">183</span>
+              <span class="site-state-item-count">185</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>

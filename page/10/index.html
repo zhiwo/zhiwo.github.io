@@ -207,6 +207,232 @@
 
     
     
+      
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/01/14/20132015/debian7-php-apache/" itemprop="url">
+                  debian wheezy 7.3 apt-get简单php5 apache2配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-01-14T10:04:42+08:00" content="2014-01-14">
+              2014-01-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>人比较懒用的apt-get 安装.   说明 debian apt-get apache2 和 apache-httpd2.x 配置是不一样的。 比如：apt-get install apache2 是木有 httpd.conf 的。</p>
+<p>1. 安装</p>
+<p>mysql： apt-get install mysql-server      顺便说一下，可以不安装.</p>
+<p>php5:  apt-get install php5      配置文件：/etc/php5/apache2/php.ini</p>
+<p>apache2: apt-get install apache2     目录：/etc/apache2/</p>
+<p>2. 配置</p>
+<p>修改 apache2.conf 里面的</p>
+<h1 id="Include_module_configuration_3A"><a href="#Include_module_configuration_3A" class="headerlink" title="Include module configuration:"></a>Include module configuration:</h1><p>Include mods-enabled/<em>.load<br>Include mods-enabled/</em>.conf</p>
+<p>为</p>
+<h1 id="Include_module_configuration_3A-1"><a href="#Include_module_configuration_3A-1" class="headerlink" title="Include module configuration:"></a>Include module configuration:</h1><p>Include /etc/apache2/mods-enabled/<em>.load<br>Include /etc/apache2/mods-enabled/</em>.conf</p>
+<p>修改最大连接数为1000</p>
+<p>MaxKeepAliveRequests 1000</p>
+<p>在最后加入</p>
+<p>AddType application/x-httpd-php .php<br>AddType application/x-httpd-php-source .phps</p>
+<p>保存apache2.conf</p>
+<p>3. 测试</p>
+<p>在 /var/www/ 新建  index.php 键入：&lt;?php phpinfo(); ?&gt;</p>
+<p>ok, 重启一下apache 2:  servcie apache2 restart</p>
+<p>访问一下： <a href="http://localhost/index.php" target="_blank" rel="external">http://localhost/index.php</a>.</p>
+<p>&nbsp;</p>
+<p>4. /etc/apache2/sites-enabled/000-default  可以修改 DocumentRoot  即php工程目录</p>
+<p>更多详细参考：<a href="http://blog.csdn.net/rainysia/article/details/7056231" title="debian" target="_blank" rel="external">http://blog.csdn.net/rainysia/article/details/7056231</a></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/01/05/20132015/POPWindow地图弹出泡泡/" itemprop="url">
+                  POPWindow 使用如地图弹出泡泡
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-01-05T07:55:46+08:00" content="2014-01-05">
+              2014-01-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>1 、overlay_popup.xml  直接把layout放出来</p>
+<p>[xml]<br><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="pi">&lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">RelativeLayout</span> <span class="attribute">xmlns:android</span>=<span class="value">&amp;quot;http:</span>//<span class="attribute">schemas.android.com</span>/<span class="attribute">apk</span>/<span class="attribute">res</span>/<span class="attribute">android</span>&amp;<span class="attribute">quot</span>;</span><br><span class="line"><span class="attribute">android:id</span>=<span class="value">&amp;quot;@+id</span>/<span class="attribute">popup_view</span>&amp;<span class="attribute">quot</span>;</span><br><span class="line"><span class="attribute">android:layout_width</span>=<span class="value">&amp;quot;wrap_content&amp;quot;</span></span><br><span class="line"><span class="attribute">android:layout_height</span>=<span class="value">&amp;quot;wrap_content&amp;quot;</span></span><br><span class="line"><span class="attribute">android:background</span>=<span class="value">&amp;quot;@drawable</span>/<span class="attribute">street_view_pop</span>&amp;<span class="attribute">quot</span>;</span><br><span class="line"><span class="attribute">android:paddingLeft</span>=<span class="value">&amp;quot;5.0dip&amp;quot;</span></span><br><span class="line"><span class="attribute">android:paddingRight</span>=<span class="value">&amp;quot;5.0dip&amp;quot;</span> &amp;<span class="attribute">amp</span>;<span class="attribute">gt</span>;&lt;/<span class="attribute">pre</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">TextView</span></span><br><span class="line"><span class="attribute">android:id</span>=<span class="value">&amp;quot;@+id</span>/<span class="attribute">name</span>&amp;<span class="attribute">quot</span>;</span><br><span class="line"><span class="attribute">android:layout_width</span>=<span class="value">&amp;quot;wrap_content&amp;quot;</span></span><br><span class="line"><span class="attribute">android:layout_height</span>=<span class="value">&amp;quot;wrap_content&amp;quot;</span></span><br><span class="line"><span class="attribute">android:layout_marginLeft</span>=<span class="value">&amp;quot;5dp&amp;quot;</span></span><br><span class="line"><span class="attribute">android:maxLength</span>=<span class="value">&amp;quot;15&amp;quot;</span></span><br><span class="line"><span class="attribute">android:singleLine</span>=<span class="value">&amp;quot;true&amp;quot;</span></span><br><span class="line"><span class="attribute">android:textColor</span>=<span class="value">&amp;quot;@color</span>/<span class="attribute">white</span>&amp;<span class="attribute">quot</span>;</span><br><span class="line"><span class="attribute">android:textSize</span>=<span class="value">&amp;quot;14sp&amp;quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">ImageView</span></span><br><span class="line"><span class="attribute">android:id</span>=<span class="value">&amp;quot;@+id</span>/<span class="attribute">imgView</span>&amp;<span class="attribute">quot</span>;</span><br><span class="line"><span class="attribute">android:layout_width</span>=<span class="value">&amp;quot;wrap_content&amp;quot;</span></span><br><span class="line"><span class="attribute">android:layout_height</span>=<span class="value">&amp;quot;wrap_content&amp;quot;</span></span><br><span class="line"><span class="attribute">android:layout_marginLeft</span>=<span class="value">&amp;quot;5dp&amp;quot;</span></span><br><span class="line"><span class="attribute">android:layout_marginRight</span>=<span class="value">&amp;quot;5dp&amp;quot;</span></span><br><span class="line"><span class="attribute">android:layout_toRightOf</span>=<span class="value">&amp;quot;@+id</span>/<span class="attribute">name</span>&amp;<span class="attribute">quot</span>;</span><br><span class="line"><span class="attribute">android:background</span>=<span class="value">&amp;quot;@drawable</span>/<span class="attribute">camera_pop</span>&amp;<span class="attribute">quot</span>; /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="title">RelativeLayout</span>&gt;</span></span><br><span class="line"></span><br><span class="line">[/xml]</span></span><br></pre></td></tr></table></figure></p>
+<p>2、加载POPView</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initPopView</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="keyword">if</span>(<span class="keyword">null</span> == popView)&#123;</span><br><span class="line"> popView = getLayoutInflater().inflate(R.layout.overlay_popup, <span class="keyword">null</span>);</span><br><span class="line"> mapView.addView(popView, <span class="keyword">new</span> MapView.LayoutParams(</span><br><span class="line"> MapView.LayoutParams.WRAP_CONTENT,</span><br><span class="line"> MapView.LayoutParams.WRAP_CONTENT, <span class="keyword">null</span>,</span><br><span class="line"> MapView.LayoutParams.BOTTOM_CENTER));</span><br><span class="line"> popView.setVisibility(View.GONE);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3:如何把这个View添加到MapView中.<br>通常是在mapView中点击某个位置,弹出popView<br>或者点击某个Overlay弹出popView,这里用点击Overlay来说明,</p>
+<p>overlay有onTap()方法,你可以实现自己的overlay,overideonTap()方法,弹出popView,</p>
+<p>也可以使用setOnFocusChangeListener(),在listener中实现弹出popView,.<br><!--[endif]--></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">private final ItemizedOverlay.OnFocusChangeListener onFocusChangeListener = new ItemizedOverlay.OnFocusChangeListener() &#123;</span><br><span class="line">@Override</span><br><span class="line"> public void onFocusChanged(ItemizedOverlay overlay, OverlayItem newFocus) &#123;</span><br><span class="line"> //创建气泡窗口&lt;/p&gt;</span><br><span class="line">if (popView != null) &#123;</span><br><span class="line"> popView.setVisibility(View.GONE);</span><br><span class="line"> &#125;</span><br><span class="line">if (newFocus != null) &#123;&lt;/p&gt;</span><br><span class="line">MapView.LayoutParams geoLP = (MapView.LayoutParams) popView.getLayoutParams();</span><br><span class="line"> geoLP.point = newFocus.getPoint();//这行用于popView的定位</span><br><span class="line"> TextView title = (TextView) popView.findViewById(R.id.map_bubbleTitle);</span><br><span class="line"> title.setText(newFocus.getTitle());&lt;/p&gt;</span><br><span class="line">TextView desc = (TextView) popView.findViewById(R.id.map_bubbleText);</span><br><span class="line"> if (newFocus.getSnippet() == null || newFocus.getSnippet().length() == 0) &#123;</span><br><span class="line"> desc.setVisibility(View.GONE);</span><br><span class="line"> &#125; else &#123;</span><br><span class="line"> desc.setVisibility(View.VISIBLE);</span><br><span class="line"> desc.setText(newFocus.getSnippet());</span><br><span class="line"> &#125;</span><br><span class="line"> mapView.updateViewLayout(popView, geoLP);</span><br><span class="line"> popView.setVisibility(View.VISIBLE);</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>或者onTap的使用：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 点击地图上的图层触发的</span></span><br><span class="line"> <span class="annotation">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">onTap</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line"> <span class="comment">// 在此处理item点击事件</span></span><br><span class="line"> <span class="keyword">final</span> OverlayItem item = getItem(index);</span><br><span class="line"> TextView name = (TextView) popView.findViewById(R.id.name);</span><br><span class="line"></span><br><span class="line"><span class="comment">//这两句可设置X、Y的偏移</span></span><br><span class="line"> layout_x = -drawable.getIntrinsicWidth()+ DisplayUtil.dip2px(Float.valueOf(&amp;quot;<span class="number">10</span>&amp;quot;), mDensity);</span><br><span class="line"> layout_y = -drawable.getIntrinsicHeight();</span><br><span class="line"> String[] str = item.getTitle().split(&amp;quot;,&amp;quot;);</span><br><span class="line"> <span class="keyword">final</span> String sid = str[<span class="number">0</span>];</span><br><span class="line"> <span class="keyword">final</span> String nameText = str[<span class="number">1</span>];</span><br><span class="line"> name.setText(nameText);</span><br><span class="line"> <span class="keyword">if</span> (popView != <span class="keyword">null</span>) &#123;</span><br><span class="line"> popView.setVisibility(View.GONE);</span><br><span class="line"> &#125;</span><br><span class="line"> MapActivity.mMapView.getController().animateTo(item.getPoint());</span><br><span class="line"> MapView.LayoutParams geoLP = (com.baidu.mapapi.map.MapView.LayoutParams) popView</span><br><span class="line"> .getLayoutParams();</span><br><span class="line"></span><br><span class="line">geoLP.x = <span class="keyword">this</span>.layout_x;<span class="comment">// Y轴偏移</span></span><br><span class="line"> geoLP.y = <span class="keyword">this</span>.layout_y;<span class="comment">// Y轴偏移</span></span><br><span class="line"> geoLP.point = item.getPoint();<span class="comment">// 这行用于popView的定位</span></span><br><span class="line"> MapActivity.mMapView.updateViewLayout(popView, geoLP);</span><br><span class="line"> popView.setVisibility(View.VISIBLE);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 点击地图时触发，点击其他隐藏POPView</span></span><br><span class="line"> <span class="annotation">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTap</span><span class="params">(GeoPoint arg0, MapView arg1)</span> </span>&#123;</span><br><span class="line"> <span class="keyword">if</span> (popView != <span class="keyword">null</span>) &#123;</span><br><span class="line"> popView.setVisibility(View.GONE);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -1123,222 +1349,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/12/10/20132015/pyqt4查看源代码/" itemprop="url">
-                  pyqt4 查看源代码
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2013-12-10T06:12:42+08:00" content="2013-12-10">
-              2013-12-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>用pyqt4 窗口–&gt;查看源代码, 一般会弹窗口，  不能启动 C:/Python27/Lib/site-packages/PyQt4\uic。</p>
-<p>网上的解决方法是：<br>pyqt4：pyuic4 -o codeFile.py -x yourUIfile.ui<br>pyqt5：pyuic5 -o codeFile.py -x yourUIfile.ui</p>
-<p>偶也没找到其他好的方法，用了一下批处理命令，做了个 bat脚本。如下</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">pyuic4</span> <span class="tag">-o</span> <span class="tag">untitled</span><span class="class">.py</span> <span class="tag">-x</span> <span class="tag">untitled</span><span class="class">.ui</span></span><br></pre></td></tr></table></figure>
-<p>保存到 *.bat 文件，每次双击即可。</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/12/10/20132015/linux-top命令操作指令/" itemprop="url">
-                  Linux top命令操作指令
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2013-12-10T03:04:38+08:00" content="2013-12-10">
-              2013-12-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>有关top命令前四行内容定义解析，请参照：<a href="http://os.51cto.com/art/201108/285581.htm" target="_blank" rel="external">http://os.51cto.com/art/201108/285581.htm</a></p>
-<p>&nbsp;</p>
-<p>下面我列出一些常用的linux top命令操作指令：</p>
-<p>q：退出top命令</p>
-<p><space>：立即刷新</space></p>
-<p>s：设置刷新时间间隔</p>
-<p>c：显示命令完全模式</p>
-<p>t:：显示或隐藏进程和CPU状态信息</p>
-<p>m：显示或隐藏内存状态信息</p>
-<p>l：显示或隐藏uptime信息</p>
-<p>f：增加或减少进程显示标志</p>
-<p>S：累计模式，会把已完成或退出的子进程占用的CPU时间累计到父进程的MITE+</p>
-<p>P：按%CPU使用率排行</p>
-<p>T：按MITE+排行</p>
-<p>M：按%MEM排行</p>
-<p>u：指定显示用户进程</p>
-<p>r：修改进程renice值</p>
-<p>kkill：进程</p>
-<p>i：只显示正在运行的进程</p>
-<p>W：保存对top的设置到文件~/.toprc，下次启动将自动调用toprc文件的设置。</p>
-<p>h：帮助命令。</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1385,14 +1395,14 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">183</span>
+              <span class="site-state-item-count">185</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>

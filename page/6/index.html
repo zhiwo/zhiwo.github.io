@@ -207,6 +207,212 @@
 
     
     
+      
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/09/04/20132015/flask-sqlalchemy-e5-85-b3-e8-81-94-e5-85-b3-e7-b3-bb-e8-af-b4-e6-98-8e/" itemprop="url">
+                  flask-sqlalchemy  关联关系说明
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-09-04T03:49:15+08:00" content="2014-09-04">
+              2014-09-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>sqlalchemy.exc.AmbiguousForeignKeysError:<br>Could not determine join condition between parent/child tables on relationship UserInfo.role - there are multiple foreign key paths linking the tables.<br>Specify the ‘foreign_keys’ argument, providing a list of those columns which should be counted as containing a foreign key reference to the parent table.</p>
+<p>异常说的是。UserInfo.role 引用关系不明确写法：<strong><span style="color: #008000;"> role = db.relationship(‘RoleInfo’)  </span></strong></p>
+<p>正确写法如下举例：</p>
+<p>class UserInfo(db.Model):<br>——- id = db.Column(db.Integer, primary_key=True)<br>——- role_id = db.Column(db.Integer, db.ForeignKey(‘role_info.id’))<br>——-<strong><span style="color: #008000;"> role = db.relationship(‘RoleInfo’, foreign_keys=[role_id])</span></strong><br>——- creator = db.Column(db.Integer, db.ForeignKey(‘user_info.id’))<br>——- creator_obj = db.relationship(‘UserInfo’, <strong><span style="color: #800000;">remote_side=id</span></strong>)</p>
+<p>class RoleInfo(db.Model):<br>——id = db.Column(db.Integer, primary_key=True)<br>——creator = db.Column(db.Integer, db.ForeignKey(‘user_info.id’))<br>——creator_obj = db.relationship(‘UserInfo’,<strong><span style="color: #800000;"> primaryjoin=’RoleInfo.creator==UserInfo.id’</span></strong>)</p>
+<p>&nbsp;</p>
+<p>关联自己需要用到 <strong><span style="color: #800000;">remote_side</span></strong> 属性。</p>
+<p>&nbsp;</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/08/29/20132015/android自定义GridView网格线/" itemprop="url">
+                  Android  自定义GridView网格线
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-08-29T07:34:02+08:00" content="2014-08-29">
+              2014-08-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>这个问题遗留了好长时间，一直无从下手，今天终于解决了</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="line number1 index0 alt2" style="color: #000000;"><code>public class LineGridView extends GridView{</code></div><br><div class="line number2 index1 alt1" style="color: #000000;"><code>``public LineGridView(Context context) {</code></div><br><div class="line number3 index2 alt2" style="color: #000000;"><code>``super``(context);</code></div><br><div class="line number4 index3 alt1" style="color: #000000;"><code>``// TODO Auto-generated constructor stub</code></div><br><div class="line number5 index4 alt2" style="color: #000000;"><code>``}</code></div><br><div class="line number6 index5 alt1" style="color: #000000;"><code>``public LineGridView(Context context, AttributeSet attrs) {</code></div><br><div class="line number7 index6 alt2" style="color: #000000;"><code>``super``(context, attrs);</code></div><br><div class="line number8 index7 alt1" style="color: #000000;"><code>``}</code></div><br><div class="line number9 index8 alt2" style="color: #000000;"><code>``public LineGridView(Context context, AttributeSet attrs, int defStyle) {</code></div><br><div class="line number10 index9 alt1" style="color: #000000;"><code>``super``(context, attrs, defStyle);</code></div><br><div class="line number11 index10 alt2" style="color: #000000;"><code>``}</code></div><br><div class="line number12 index11 alt1" style="color: #000000;"><code>``@Override</code></div><br><div class="line number13 index12 alt2" style="color: #000000;"><code>``protected void dispatchDraw(Canvas canvas){</code></div><br><div class="line number14 index13 alt1" style="color: #000000;"><code>``super``.dispatchDraw(canvas);</code></div><br><div class="line number15 index14 alt2" style="color: #000000;"><code>``View localView1 = getChildAt(0);</code></div><br><div class="line number16 index15 alt1" style="color: #000000;"><code>``int column = getWidth() / localView1.getWidth();</code></div><br><div class="line number17 index16 alt2" style="color: #000000;"><code>``int childCount = getChildCount();</code></div><br><div class="line number18 index17 alt1" style="color: #000000;"><code>``Paint localPaint;</code></div><br><div class="line number19 index18 alt2" style="color: #000000;"><code>``localPaint = ``new</code> <code>Paint();</code></div><br><div class="line number20 index19 alt1" style="color: #000000;"><code>``localPaint.setStyle(Paint.Style.STROKE);</code></div><br><div class="line number21 index20 alt2" style="color: #000000;"><code>``localPaint.setColor(getContext().getResources().getColor(R.color.grid_line));</code></div><br><div class="line number22 index21 alt1" style="color: #000000;"><code>``for``(int i = 0;i &amp;lt; childCount;i++){</code></div><br><div class="line number23 index22 alt2" style="color: #000000;"><code>``View cellView = getChildAt(i);</code></div><br><div class="line number24 index23 alt1" style="color: #000000;"><code>``if``((i + 1) % column == 0&amp;amp;&amp;amp;i&amp;lt;column){         // 第一列画头顶线显示底部线</code></div><br><div class="line number25 index24 alt2" style="color: #000000;"><code>``canvas.drawLine(cellView.getLeft(), cellView.getBottom(), cellView.getRight(), cellView.getBottom(), localPaint);</code></div><br><div class="line number26 index25 alt1" style="color: #000000;"><code>``}``else</code> <code>if``((i + 1) &amp;gt; (childCount - (childCount % column))){       // 边界处理（最后一行）画右边垂直隔离线</code></div><br><div class="line number27 index26 alt2" style="color: #000000;"><code>``canvas.drawLine(cellView.getRight(), cellView.getTop(), cellView.getRight(), cellView.getBottom(), localPaint);</code></div><br><div class="line number28 index27 alt1" style="color: #000000;"><code>``}``else``{</code></div><br><div class="line number28 index27 alt1" style="color: #000000;">                                 if（i&lt;column）  // 其他列，画右边隔离线，与底线</div><br><div class="line number28 index27 alt1" style="color: #000000;">                                  {</div><br><div class="line number28 index27 alt1" style="color: #000000;"></div><br><div class="line number29 index28 alt2" style="color: #000000;"><code>``canvas.drawLine(cellView.getRight(), cellView.getTop(), cellView.getRight(), cellView.getBottom(), localPaint);</code></div><br><div class="line number30 index29 alt1" style="color: #000000;"><code>``canvas.drawLine(cellView.getLeft(), cellView.getBottom(), cellView.getRight(), cellView.getBottom(), localPaint);</code></div><br><div class="line number30 index29 alt1" style="color: #000000;"><code>}</code></div><br><div class="line number30 index29 alt1" style="color: #000000;">                         else//如果gridview分页，第一页有底线，这样可以去掉底线， // 其他列，画右边隔离线</div><br><div class="line number30 index29 alt1" style="color: #000000;">                               {</div><br><div class="line number30 index29 alt1" style="color: #000000;"><code>``canvas.drawLine(cellView.getRight(), cellView.getTop(), cellView.getRight(), cellView.getBottom(), localPaint);</code></div><br><div class="line number30 index29 alt1" style="color: #000000;">                                 }</div><br><div class="line number31 index30 alt2" style="color: #000000;"><code>``}</code></div><br><div class="line number32 index31 alt1" style="color: #000000;"><code>``}</code></div><br><div class="line number32 index31 alt1" style="color: #000000;">               // 确保最后一行，没有填满的单元格右侧也好垂直隔离线（注意与上面代码 else if 的关系）</div><br><div class="line number33 index32 alt2" style="color: #000000;"><code>``if``(childCount % column != 0){</code></div><br><div class="line number34 index33 alt1" style="color: #000000;"><code>``for``(int j = 0 ;j &amp;lt; (column-childCount % column) ; j++){</code></div><br><div class="line number35 index34 alt2" style="color: #000000;"><code>``View lastView = getChildAt(childCount - 1);</code></div><br><div class="line number36 index35 alt1" style="color: #000000;"><code>``canvas.drawLine(lastView.getRight() + lastView.getWidth() * j, lastView.getTop(), lastView.getRight() + lastView.getWidth()* j, lastView.getBottom(), localPaint);</code></div><br><div class="line number37 index36 alt2" style="color: #000000;"><code>``}</code></div><br><div class="line number38 index37 alt1" style="color: #000000;"><code>``}</code></div><br><div class="line number39 index38 alt2" style="color: #000000;"><code>``}</code></div><br><div class="line number40 index39 alt1" style="color: #000000;"><code>}</code></div><br><div class="line number40 index39 alt1" style="color: #000000;"></div><br><div class="line number40 index39 alt1" style="color: #000000;"><br><br>在<code>dispatchDraw</code>方法中，我们对每一个子view的边界按照一定的方式绘上了边框，一般一个格子只需绘制其中两条边，需要注意的是最边上的格子需要特殊处理。<code>super``.dispatchDraw(canvas);</code>一定要调用，不然格子中的内容（子view）就得不到绘制的机会，结果就如下面这样：<br><br><img src="http://www.jcodecraeer.com/uploads/20131227/13881504312676.png" alt="" title="device-2013-12-27-211055.png"><br><br></div>
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -1038,266 +1244,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/07/11/20132015/lxml解析/" itemprop="url">
-                  lxml 解析 xml 经典 源自stackoverflow
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2014-07-11T09:28:15+08:00" content="2014-07-11">
-              2014-07-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <pre><code>&lt;span class=&quot;kwd&quot; style=&quot;color: #00008b;&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt; lxml &lt;/span&gt;&lt;span class=&quot;kwd&quot; style=&quot;color: #00008b;&quot;&gt;import&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt; etree
-data &lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;&quot;&quot;
- &amp;lt;svg
-    xmlns:dc=&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;com&quot; style=&quot;color: #808080;&quot;&gt;//purl.org/dc/elements/1.1/&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
-    xmlns&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;cc&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;http://web.resource.org/cc/&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
-    xmlns&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;rdf&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
-    xmlns&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;svg&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;http://www.w3.org/2000/svg&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
-    xmlns&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;http://www.w3.org/2000/svg&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
-    xmlns&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;xlink&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;http://www.w3.org/1999/xlink&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
-    xmlns&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;sodipodi&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
-    xmlns&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;inkscape&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;http://www.inkscape.org/namespaces/inkscape&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
-    width&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;50&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
-    height&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;25&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
-    id&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;svg2&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
-    sodipodi&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;0.32&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
-    inkscape&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;0.45.1&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
-    version&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;1.0&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
-    sodipodi&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;docbase&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;/home/tcooksey/Projects/qt-4.4/demos/embedded/embeddedsvgviewer/files&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
-    sodipodi&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;docname&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;v-slider-handle.svg&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
-    inkscape&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;output_extension&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;org.inkscape.output.svg.inkscape&quot;&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;text
-       xml&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;space&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;preserve&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
-       style&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;font-size:14.19380379px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans Mono;-inkscape-font-specification:DejaVu Sans Mono&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
-       x&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;109.38555&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
-       y&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;407.02847&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
-       id&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;libcode-00&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
-       sodipodi&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;linespacing&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;125%&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
-       inkscape&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;#text4638&quot;&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;tspan
-         sodipodi&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;role&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;line&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
-         id&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;tspan4640&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
-         x&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;109.38555&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
-         y&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;407.02847&quot;&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;lit&quot; style=&quot;color: #800000;&quot;&gt;12345678&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;/tspan&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;svg&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;&quot;&quot;
-
-nsmap = {
-    &apos;sodipodi&apos;: &apos;http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd&apos;,
-    &apos;cc&apos;: &apos;http://web.resource.org/cc/&apos;,
-    &apos;svg&apos;: &apos;http://www.w3.org/2000/svg&apos;,
-    &apos;dc&apos;: &apos;http://purl.org/dc/elements/1.1/&apos;,
-    &apos;xlink&apos;: &apos;http://www.w3.org/1999/xlink&apos;,
-    &apos;rdf&apos;: &apos;http://www.w3.org/1999/02/22-rdf-syntax-ns#&apos;,
-    &apos;inkscape&apos;: &apos;http://www.inkscape.org/namespaces/inkscape&apos;
-    }
-
-data = etree.XML(data)
-
-# All svg text elements
-&amp;gt;&amp;gt;&amp;gt; data.xpath(&apos;//svg:text&apos;,namespaces=nsmap)
-[&amp;lt;Element {http://www.w3.org/2000/svg}text at b7cfc9dc&amp;gt;]
-# All svg text elements with id=&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;libcode&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;lit&quot; style=&quot;color: #800000;&quot;&gt;00&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;
-&amp;gt;&amp;gt;&amp;gt; data.xpath(&apos;//svg:text[@id=&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;libcode&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;lit&quot; style=&quot;color: #800000;&quot;&gt;00&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;]&apos;,namespaces=nsmap)
-[&amp;lt;Element {http://www.w3.org/2000/svg}text at b7cfc9dc&amp;gt;]
-# TSPAN child elements of text elements with id=&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;libcode&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;lit&quot; style=&quot;color: #800000;&quot;&gt;00&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;
-&amp;gt;&amp;gt;&amp;gt; data.xpath(&apos;//svg:text[@id=&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;libcode&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;lit&quot; style=&quot;color: #800000;&quot;&gt;00&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;]/svg:tspan&apos;,namespaces=nsmap)
-[&amp;lt;Element {http://www.w3.org/2000/svg}tspan at b7cfc964&amp;gt;]
-# All text elements with id starting with &quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;libcode&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;
-&amp;gt;&amp;gt;&amp;gt; data.xpath(&apos;//svg:text[fn:startswith(@id,&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;libcode&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;)]&apos;,namespaces=nsmap)
-[&amp;lt;Element {http://www.w3.org/2000/svg}text at b7cfcc34&amp;gt;]
-# Iterate text elements, access tspan child
-&amp;gt;&amp;gt;&amp;gt; for elem in data.xpath(&apos;//svg:text[fn:startswith(@id,&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;libcode&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;)]&apos;,namespaces=nsmap):
-...     tp = elem.xpath(&apos;./svg:tspan&apos;,namespaces=nsmap)[0]
-...     tp.text = &quot;&lt;/span&gt;&lt;span class=&quot;kwd&quot; style=&quot;color: #00008b;&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt; text&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;
-
-open(&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;newfile&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;svg&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;,&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;).write(etree.tostring(data))
-
-参考地址：[http://stackoverflow.com/questions/2359317/how-to-find-elements-by-id-field-in-svg-file-using-python/2359880#2359880](http://stackoverflow.com/questions/2359317/how-to-find-elements-by-id-field-in-svg-file-using-python/2359880#2359880)&lt;/span&gt;
-</code></pre>
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/07/10/20132015/python-socket-异常/" itemprop="url">
-                  python socket 异常
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2014-07-10T07:24:05+08:00" content="2014-07-10">
-              2014-07-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>try:<br>print ‘receive from %r’ % str(self.client_address) # data source<br>data_xml = self.request.recv(config.get_BUF_SIZE()) # receive<br>xml += data_xml<br>except socket.error, e:<br>err = e.args[0]<br>print errno.EWOULDBLOCK<br>print e<br>print err<br>print socket.errno<br>print socket.error<br>break<br>except:<br>print ‘XTXT==’*23<br>traceback.print_exc()<br>break</p>
-<p>&nbsp;</p>
-<p>有关 socket.recv() 函数字节的error 10035 问题：</p>
-<p>参考：<a href="http://stackoverflow.com/questions/16745409/what-does-pythons-socket-recv-return-for-non-blocking-sockets-if-no-data-is-r" target="_blank" rel="external">http://stackoverflow.com/questions/16745409/what-does-pythons-socket-recv-return-for-non-blocking-sockets-if-no-data-is-r</a></p>
-<p><a href="https://docs.python.org/2/library/socket.html" target="_blank" rel="external">https://docs.python.org/2/library/socket.html</a></p>
-<p><a href="https://docs.python.org/2/library/errno.html#module-errno" target="_blank" rel="external">https://docs.python.org/2/library/errno.html#module-errno</a></p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1344,14 +1290,14 @@ open(&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;newfile&lt;/span&gt;&l
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">183</span>
+              <span class="site-state-item-count">185</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>

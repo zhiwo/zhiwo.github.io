@@ -207,6 +207,227 @@
 
     
     
+      
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2013/12/10/20132015/pyqt4查看源代码/" itemprop="url">
+                  pyqt4 查看源代码
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2013-12-10T06:12:42+08:00" content="2013-12-10">
+              2013-12-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>用pyqt4 窗口–&gt;查看源代码, 一般会弹窗口，  不能启动 C:/Python27/Lib/site-packages/PyQt4\uic。</p>
+<p>网上的解决方法是：<br>pyqt4：pyuic4 -o codeFile.py -x yourUIfile.ui<br>pyqt5：pyuic5 -o codeFile.py -x yourUIfile.ui</p>
+<p>偶也没找到其他好的方法，用了一下批处理命令，做了个 bat脚本。如下</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">pyuic4</span> <span class="tag">-o</span> <span class="tag">untitled</span><span class="class">.py</span> <span class="tag">-x</span> <span class="tag">untitled</span><span class="class">.ui</span></span><br></pre></td></tr></table></figure>
+<p>保存到 *.bat 文件，每次双击即可。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2013/12/10/20132015/linux-top命令操作指令/" itemprop="url">
+                  Linux top命令操作指令
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2013-12-10T03:04:38+08:00" content="2013-12-10">
+              2013-12-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>有关top命令前四行内容定义解析，请参照：<a href="http://os.51cto.com/art/201108/285581.htm" target="_blank" rel="external">http://os.51cto.com/art/201108/285581.htm</a></p>
+<p>&nbsp;</p>
+<p>下面我列出一些常用的linux top命令操作指令：</p>
+<p>q：退出top命令</p>
+<p><space>：立即刷新</space></p>
+<p>s：设置刷新时间间隔</p>
+<p>c：显示命令完全模式</p>
+<p>t:：显示或隐藏进程和CPU状态信息</p>
+<p>m：显示或隐藏内存状态信息</p>
+<p>l：显示或隐藏uptime信息</p>
+<p>f：增加或减少进程显示标志</p>
+<p>S：累计模式，会把已完成或退出的子进程占用的CPU时间累计到父进程的MITE+</p>
+<p>P：按%CPU使用率排行</p>
+<p>T：按MITE+排行</p>
+<p>M：按%MEM排行</p>
+<p>u：指定显示用户进程</p>
+<p>r：修改进程renice值</p>
+<p>kkill：进程</p>
+<p>i：只显示正在运行的进程</p>
+<p>W：保存对top的设置到文件~/.toprc，下次启动将自动调用toprc文件的设置。</p>
+<p>h：帮助命令。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -1057,199 +1278,6 @@ KeyError: '__template__'
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/11/12/20132015/python全局变量global/" itemprop="url">
-                  python全局变量global
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2013-11-12T09:09:53+08:00" content="2013-11-12">
-              2013-11-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>python 的全局变量global 声明好纠结，在class上方声明或在<strong>init</strong> 中声明，在def 中可以直接用，但不可以修改。在def中修改，需要在def重新声明一次。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">global</span> a</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">()</span>:</span></span><br><span class="line">    a = <span class="number">1</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">ta</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">print</span> a</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">tb</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">global</span> a</span><br><span class="line">        a += <span class="number">1</span></span><br><span class="line">        <span class="keyword">print</span> a</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">tc</span><span class="params">()</span>:</span></span><br><span class="line">        a += <span class="number">1</span></span><br><span class="line">        <span class="keyword">print</span> a</span><br></pre></td></tr></table></figure></p>
-<p>以上：<br>ta() 结果是： 1<br>tb() 结果是： 2<br>tc() 结果是： 异常error</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013/11/11/20132015/批处理获取盘符和路径/" itemprop="url">
-                  批处理获取盘符/路径
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2013-11-11T06:25:05+08:00" content="2013-11-11">
-              2013-11-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/cmd/" itemprop="url" rel="index">
-                    <span itemprop="name">cmd</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>@echo off<br>echo 当前盘符：%~d0<br>echo 当前盘符和路径：%~dp0<br>echo 当前批处理全路径：%~f0<br>echo 当前盘符和路径的短文件名格式：%~sdp0<br>echo 当前CMD默认目录：%cd%<br>pause<br>实例：</p>
-<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@echo</span> on</span><br><span class="line"><span class="variable">%~</span>d0</span><br><span class="line">cd <span class="variable">%~</span>dp0</span><br><span class="line"><span class="keyword">python</span> newExecuteFile.py</span><br><span class="line"><span class="keyword">pause</span></span><br></pre></td></tr></table></figure>
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1296,14 +1324,14 @@ KeyError: '__template__'
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">183</span>
+              <span class="site-state-item-count">185</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>

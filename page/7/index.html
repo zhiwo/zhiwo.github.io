@@ -207,6 +207,271 @@
 
     
     
+      
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/07/11/20132015/lxml解析/" itemprop="url">
+                  lxml 解析 xml 经典 源自stackoverflow
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-07-11T09:28:15+08:00" content="2014-07-11">
+              2014-07-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <pre><code>&lt;span class=&quot;kwd&quot; style=&quot;color: #00008b;&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt; lxml &lt;/span&gt;&lt;span class=&quot;kwd&quot; style=&quot;color: #00008b;&quot;&gt;import&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt; etree
+data &lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;&quot;&quot;
+ &amp;lt;svg
+    xmlns:dc=&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;com&quot; style=&quot;color: #808080;&quot;&gt;//purl.org/dc/elements/1.1/&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
+    xmlns&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;cc&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;http://web.resource.org/cc/&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
+    xmlns&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;rdf&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
+    xmlns&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;svg&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;http://www.w3.org/2000/svg&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
+    xmlns&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;http://www.w3.org/2000/svg&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
+    xmlns&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;xlink&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;http://www.w3.org/1999/xlink&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
+    xmlns&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;sodipodi&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
+    xmlns&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;inkscape&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;http://www.inkscape.org/namespaces/inkscape&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
+    width&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;50&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
+    height&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;25&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
+    id&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;svg2&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
+    sodipodi&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;0.32&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
+    inkscape&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;0.45.1&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
+    version&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;1.0&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
+    sodipodi&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;docbase&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;/home/tcooksey/Projects/qt-4.4/demos/embedded/embeddedsvgviewer/files&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
+    sodipodi&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;docname&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;v-slider-handle.svg&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
+    inkscape&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;output_extension&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;org.inkscape.output.svg.inkscape&quot;&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;text
+       xml&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;space&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;preserve&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
+       style&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;font-size:14.19380379px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans Mono;-inkscape-font-specification:DejaVu Sans Mono&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
+       x&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;109.38555&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
+       y&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;407.02847&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
+       id&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;libcode-00&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
+       sodipodi&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;linespacing&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;125%&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
+       inkscape&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;#text4638&quot;&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;tspan
+         sodipodi&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;role&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;line&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
+         id&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;tspan4640&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
+         x&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;109.38555&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;
+         y&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;407.02847&quot;&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;lit&quot; style=&quot;color: #800000;&quot;&gt;12345678&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;/tspan&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;svg&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;&quot;&quot;
+
+nsmap = {
+    &apos;sodipodi&apos;: &apos;http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd&apos;,
+    &apos;cc&apos;: &apos;http://web.resource.org/cc/&apos;,
+    &apos;svg&apos;: &apos;http://www.w3.org/2000/svg&apos;,
+    &apos;dc&apos;: &apos;http://purl.org/dc/elements/1.1/&apos;,
+    &apos;xlink&apos;: &apos;http://www.w3.org/1999/xlink&apos;,
+    &apos;rdf&apos;: &apos;http://www.w3.org/1999/02/22-rdf-syntax-ns#&apos;,
+    &apos;inkscape&apos;: &apos;http://www.inkscape.org/namespaces/inkscape&apos;
+    }
+
+data = etree.XML(data)
+
+# All svg text elements
+&amp;gt;&amp;gt;&amp;gt; data.xpath(&apos;//svg:text&apos;,namespaces=nsmap)
+[&amp;lt;Element {http://www.w3.org/2000/svg}text at b7cfc9dc&amp;gt;]
+# All svg text elements with id=&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;libcode&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;lit&quot; style=&quot;color: #800000;&quot;&gt;00&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;
+&amp;gt;&amp;gt;&amp;gt; data.xpath(&apos;//svg:text[@id=&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;libcode&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;lit&quot; style=&quot;color: #800000;&quot;&gt;00&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;]&apos;,namespaces=nsmap)
+[&amp;lt;Element {http://www.w3.org/2000/svg}text at b7cfc9dc&amp;gt;]
+# TSPAN child elements of text elements with id=&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;libcode&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;lit&quot; style=&quot;color: #800000;&quot;&gt;00&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;
+&amp;gt;&amp;gt;&amp;gt; data.xpath(&apos;//svg:text[@id=&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;libcode&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;lit&quot; style=&quot;color: #800000;&quot;&gt;00&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;]/svg:tspan&apos;,namespaces=nsmap)
+[&amp;lt;Element {http://www.w3.org/2000/svg}tspan at b7cfc964&amp;gt;]
+# All text elements with id starting with &quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;libcode&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;
+&amp;gt;&amp;gt;&amp;gt; data.xpath(&apos;//svg:text[fn:startswith(@id,&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;libcode&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;)]&apos;,namespaces=nsmap)
+[&amp;lt;Element {http://www.w3.org/2000/svg}text at b7cfcc34&amp;gt;]
+# Iterate text elements, access tspan child
+&amp;gt;&amp;gt;&amp;gt; for elem in data.xpath(&apos;//svg:text[fn:startswith(@id,&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;libcode&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;)]&apos;,namespaces=nsmap):
+...     tp = elem.xpath(&apos;./svg:tspan&apos;,namespaces=nsmap)[0]
+...     tp.text = &quot;&lt;/span&gt;&lt;span class=&quot;kwd&quot; style=&quot;color: #00008b;&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt; text&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;
+
+open(&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;newfile&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;svg&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;,&quot;&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;str&quot; style=&quot;color: #800000;&quot;&gt;&quot;).write(etree.tostring(data))
+
+参考地址：[http://stackoverflow.com/questions/2359317/how-to-find-elements-by-id-field-in-svg-file-using-python/2359880#2359880](http://stackoverflow.com/questions/2359317/how-to-find-elements-by-id-field-in-svg-file-using-python/2359880#2359880)&lt;/span&gt;
+</code></pre>
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/07/10/20132015/python-socket-异常/" itemprop="url">
+                  python socket 异常
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-07-10T07:24:05+08:00" content="2014-07-10">
+              2014-07-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>try:<br>print ‘receive from %r’ % str(self.client_address) # data source<br>data_xml = self.request.recv(config.get_BUF_SIZE()) # receive<br>xml += data_xml<br>except socket.error, e:<br>err = e.args[0]<br>print errno.EWOULDBLOCK<br>print e<br>print err<br>print socket.errno<br>print socket.error<br>break<br>except:<br>print ‘XTXT==’*23<br>traceback.print_exc()<br>break</p>
+<p>&nbsp;</p>
+<p>有关 socket.recv() 函数字节的error 10035 问题：</p>
+<p>参考：<a href="http://stackoverflow.com/questions/16745409/what-does-pythons-socket-recv-return-for-non-blocking-sockets-if-no-data-is-r" target="_blank" rel="external">http://stackoverflow.com/questions/16745409/what-does-pythons-socket-recv-return-for-non-blocking-sockets-if-no-data-is-r</a></p>
+<p><a href="https://docs.python.org/2/library/socket.html" target="_blank" rel="external">https://docs.python.org/2/library/socket.html</a></p>
+<p><a href="https://docs.python.org/2/library/errno.html#module-errno" target="_blank" rel="external">https://docs.python.org/2/library/errno.html#module-errno</a></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -1053,204 +1318,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/06/13/20132015/buildout相关文章推荐/" itemprop="url">
-                  Buildout 相关文章推荐
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2014-06-13T09:00:26+08:00" content="2014-06-13">
-              2014-06-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>这篇文章(url:<span style="color: #252519;"> </span><a href="http://lxneng.com/posts/192" title="buildout" target="_blank" rel="external">http://lxneng.com/posts/192</a>)后面的<span style="color: #252519;">Pyramid构建没看明白，尝试但是报错windows7下。偶打算用flask的. 所以…</span></p>
-<p>这篇关于Flask的写的挺好的：<a href="http://blog.plotcup.com/a/136" title="buildout" target="_blank" rel="external">http://blog.plotcup.com/a/136</a></p>
-<p>有助于理解：<a href="http://www.worldhello.net/2010/12/10/2207.html" target="_blank" rel="external">http://www.worldhello.net/2010/12/10/2207.html</a></p>
-<p>&nbsp;</p>
-<p>官方指南，真的是指到难边了：<a href="http://www.buildout.org/en/latest/docs/tutorial.html" target="_blank" rel="external">http://www.buildout.org/en/latest/docs/tutorial.html</a></p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/06/05/20132015/bind9主从同步/" itemprop="url">
-                  bind9 主从同步 serial
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2014-06-05T08:49:04+08:00" content="2014-06-05">
-              2014-06-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>现象：slave zone 文件的日期一直更新， 但是zone文件里面的内容不变（还是乱码，据说是加密的文件）</p>
-<p>分析：zone文件里面 SOA配置里有 serial 这个选项， master-slave更新，slave  zone文件的 serial 必须小于 master  zone文件的 serial  值。    master的zone文件在变更时会通知slave更新，slave会检查 serial  值。</p>
-<p>解决方法：O(∩_∩)O，自己写脚本。貌似结合mysql同步可以实现，呵呵。总之不会像数据库的自增一样勾选就会了。</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1297,14 +1364,14 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">183</span>
+              <span class="site-state-item-count">185</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
