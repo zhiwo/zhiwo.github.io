@@ -1,0 +1,663 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ArcGIS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="经多方验证这个是可以用的12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高斯正算反算C#源码">
+<meta property="og:url" content="http://hi.holdlg.com/2013/08/01/20132015/高斯正算反算C#源码/index.html">
+<meta property="og:site_name" content="知我">
+<meta property="og:description" content="经多方验证这个是可以用的12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989">
+<meta property="og:updated_time" content="2015-12-25T10:01:00.198Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="高斯正算反算C#源码">
+<meta name="twitter:description" content="经多方验证这个是可以用的12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post',
+    motion: true
+  };
+</script>
+
+  <title> 高斯正算反算C#源码 | 知我 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?6adc065ab3239e94c39287e9a4b71c1f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">知我</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                高斯正算反算C#源码
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2013-08-01T18:24:30+08:00" content="2013-08-01">
+              2013-08-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ArcGIS/" itemprop="url" rel="index">
+                    <span itemprop="name">ArcGIS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>经多方验证这个是可以用的<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Gauss</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="preprocessor">#region 高斯投影正反算</span></span><br><span class="line">        <span class="comment">/// </span></span><br><span class="line">        <span class="comment">/// 从大地坐标到平面坐标的高斯正算</span></span><br><span class="line">        <span class="comment">///</span></span><br><span class="line">        <span class="comment">/// 默认的是使用假定坐标的六度带投影</span></span><br><span class="line">        <span class="comment">/// </span></span><br><span class="line">        <span class="comment">///大地纬度</span></span><br><span class="line">        <span class="comment">///大地经度</span></span><br><span class="line">        <span class="comment">///平面纵轴</span></span><br><span class="line">        <span class="comment">///平面横轴</span></span><br><span class="line">        <span class="comment">///参考椭球长半轴</span></span><br><span class="line">        <span class="comment">///参考椭球扁率倒数</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">BL_xy</span><span class="params">(<span class="keyword">double</span> B, <span class="keyword">double</span> L, out <span class="keyword">double</span> x, out <span class="keyword">double</span> y, <span class="keyword">double</span> a, <span class="keyword">double</span> f)</span></span><br><span class="line">        </span>&#123;</span><br><span class="line">            BL_xy(B, L, out x, out y, a, f, <span class="number">6</span>, <span class="literal">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/// </span></span><br><span class="line">        <span class="comment">/// 从大地坐标到平面坐标的高斯正算</span></span><br><span class="line">        <span class="comment">///</span></span><br><span class="line">        <span class="comment">/// 默认的是使用假定坐标</span></span><br><span class="line">        <span class="comment">/// </span></span><br><span class="line">        <span class="comment">///大地纬度</span></span><br><span class="line">        <span class="comment">///大地经度</span></span><br><span class="line">        <span class="comment">///平面纵轴</span></span><br><span class="line">        <span class="comment">///平面横轴</span></span><br><span class="line">        <span class="comment">///参考椭球长半轴</span></span><br><span class="line">        <span class="comment">///参考椭球扁率倒数</span></span><br><span class="line">        <span class="comment">///投影分带的带宽</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">BL_xy</span><span class="params">(<span class="keyword">double</span> B, <span class="keyword">double</span> L, out <span class="keyword">double</span> x, out <span class="keyword">double</span> y, <span class="keyword">double</span> a, <span class="keyword">double</span> f, <span class="keyword">int</span> beltWidth)</span></span><br><span class="line">        </span>&#123;</span><br><span class="line">            BL_xy(B, L, out x, out y, a, f, beltWidth, <span class="literal">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/// </span></span><br><span class="line">        <span class="comment">/// 从大地坐标到平面坐标的高斯正算</span></span><br><span class="line">        <span class="comment">///</span></span><br><span class="line">        <span class="comment">/// 默认的是六度带投影</span></span><br><span class="line">        <span class="comment">/// </span></span><br><span class="line">        <span class="comment">///大地纬度</span></span><br><span class="line">        <span class="comment">///大地经度</span></span><br><span class="line">        <span class="comment">///平面纵轴</span></span><br><span class="line">        <span class="comment">///平面横轴</span></span><br><span class="line">        <span class="comment">///参考椭球长半轴</span></span><br><span class="line">        <span class="comment">///参考椭球扁率倒数</span></span><br><span class="line">        <span class="comment">///是否使用假定坐标</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">BL_xy</span><span class="params">(<span class="keyword">double</span> B, <span class="keyword">double</span> L, out <span class="keyword">double</span> x, out <span class="keyword">double</span> y, <span class="keyword">double</span> a, <span class="keyword">double</span> f, <span class="keyword">bool</span> assumedCoord)</span></span><br><span class="line">        </span>&#123;</span><br><span class="line">            BL_xy(B, L, out x, out y, a, f, <span class="number">6</span>, assumedCoord);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/// </span></span><br><span class="line">        <span class="comment">/// 从大地坐标到平面坐标的高斯正算</span></span><br><span class="line">        <span class="comment">/// </span></span><br><span class="line">        <span class="comment">///大地纬度</span></span><br><span class="line">        <span class="comment">///大地经度</span></span><br><span class="line">        <span class="comment">///平面纵轴</span></span><br><span class="line">        <span class="comment">///平面横轴</span></span><br><span class="line">        <span class="comment">///参考椭球长半轴</span></span><br><span class="line">        <span class="comment">///参考椭球扁率倒数</span></span><br><span class="line">        <span class="comment">///投影分带的带宽</span></span><br><span class="line">        <span class="comment">///是否使用假定坐标</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">BL_xy</span><span class="params">(<span class="keyword">double</span> B, <span class="keyword">double</span> L, out <span class="keyword">double</span> x, out <span class="keyword">double</span> y, <span class="keyword">double</span> a, <span class="keyword">double</span> f, <span class="keyword">int</span> beltWidth, <span class="keyword">bool</span> assumedCoord)</span></span><br><span class="line">        </span>&#123;</span><br><span class="line">            <span class="keyword">int</span> beltNum;                           <span class="comment">//投影分带的带号</span></span><br><span class="line">            beltNum = (<span class="keyword">int</span>)Math.Ceiling((L – (beltWidth == <span class="number">3</span> ? <span class="number">1.5</span> : <span class="number">0</span>)) / beltWidth);</span><br><span class="line">            <span class="keyword">if</span> (beltWidth == <span class="number">3</span> &amp;amp;&amp;amp; beltNum * <span class="number">3</span> == L – <span class="number">1.5</span>) beltNum += <span class="number">1</span>;</span><br><span class="line">            L -= beltNum * beltWidth – (beltWidth == <span class="number">6</span> ? <span class="number">3</span> : <span class="number">0</span>);</span><br><span class="line">            Bl_xy(B, L, out x, out y, a, f, beltWidth);</span><br><span class="line">            <span class="comment">//换算成假定坐标，平移500km，前面加带号</span></span><br><span class="line">            <span class="keyword">if</span> (assumedCoord) y += <span class="number">500000</span> + beltNum * <span class="number">1000000</span>;<span class="comment">//得到的值带度带了</span></span><br><span class="line">           <span class="comment">//if（assumedCoord）y+=500000;//得到的值没有度带</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/// </span></span><br><span class="line">        <span class="comment">/// 从大地坐标到平面坐标的高斯正算</span></span><br><span class="line">        <span class="comment">///</span></span><br><span class="line">        <span class="comment">/// 指定中央子午线，用于进行邻带换算，此时必不使用假定坐标</span></span><br><span class="line">        <span class="comment">/// </span></span><br><span class="line">        <span class="comment">///大地纬度</span></span><br><span class="line">        <span class="comment">///大地经度</span></span><br><span class="line">        <span class="comment">///中央子午线</span></span><br><span class="line">        <span class="comment">///平面纵轴</span></span><br><span class="line">        <span class="comment">///平面横轴</span></span><br><span class="line">        <span class="comment">///参考椭球长半轴</span></span><br><span class="line">        <span class="comment">///参考椭球扁率倒数</span></span><br><span class="line">        <span class="comment">///投影分带的带宽</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Bl_xy</span><span class="params">(<span class="keyword">double</span> B, <span class="keyword">double</span> dL, out <span class="keyword">double</span> x, out <span class="keyword">double</span> y, <span class="keyword">double</span> a, <span class="keyword">double</span> f, <span class="keyword">int</span> beltWidth)</span></span><br><span class="line">        </span>&#123;</span><br><span class="line">            <span class="keyword">double</span> ee = (<span class="number">2</span> * f – <span class="number">1</span>) / f / f;       <span class="comment">//第一偏心率的平方</span></span><br><span class="line">            <span class="keyword">double</span> ee2 = ee / (<span class="number">1</span> – ee);            <span class="comment">//第二偏心率的平方</span></span><br><span class="line">            <span class="keyword">double</span> rB, tB, m;</span><br><span class="line">            rB = B * Math.PI / <span class="number">180</span>;</span><br><span class="line">            tB = Math.Tan(rB);</span><br><span class="line">            m = Math.Cos(rB) * dL * Math.PI / <span class="number">180</span>;</span><br><span class="line">            <span class="keyword">double</span> N = a / Math.Sqrt(<span class="number">1</span> – ee * Math.Sin(rB) * Math.Sin(rB));</span><br><span class="line">            <span class="keyword">double</span> it2 = ee2 * Math.Pow(Math.Cos(rB), <span class="number">2</span>);</span><br><span class="line">            x = m * m / <span class="number">2</span> + (<span class="number">5</span> – tB * tB + <span class="number">9</span> * it2 + <span class="number">4</span> * it2 * it2) * Math.Pow(m, <span class="number">4</span>) / <span class="number">24</span> + (<span class="number">61</span> – <span class="number">58</span> * tB * tB + Math.Pow(tB, <span class="number">4</span>)) * Math.Pow(m, <span class="number">6</span>) / <span class="number">720</span>;</span><br><span class="line">            x = MeridianLength(B, a, f) + N * tB * x;</span><br><span class="line">            y = N * (m + (<span class="number">1</span> – tB * tB + it2) * Math.Pow(m, <span class="number">3</span>) / <span class="number">6</span> + (<span class="number">5</span> – <span class="number">18</span> * tB * tB + Math.Pow(tB, <span class="number">4</span>) + <span class="number">14</span> * it2 – <span class="number">58</span> * tB * tB * it2) * Math.Pow(m, <span class="number">5</span>) / <span class="number">120</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/// </span></span><br><span class="line">        <span class="comment">/// 平面坐标（自然坐标或假定坐标）到大地坐标的高斯反算</span></span><br><span class="line">        <span class="comment">///</span></span><br><span class="line">        <span class="comment">/// 默认使用六度带</span></span><br><span class="line">        <span class="comment">/// </span></span><br><span class="line">        <span class="comment">///平面纵轴</span></span><br><span class="line">        <span class="comment">///平面横轴</span></span><br><span class="line">        <span class="comment">///大地纬度</span></span><br><span class="line">        <span class="comment">///大地经度</span></span><br><span class="line">        <span class="comment">///参考椭球长半轴</span></span><br><span class="line">        <span class="comment">///参考椭球扁率倒数</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">xy_BL</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">double</span> y, out <span class="keyword">double</span> B, out <span class="keyword">double</span> L, <span class="keyword">double</span> a, <span class="keyword">double</span> f)</span></span><br><span class="line">        </span>&#123;</span><br><span class="line">            xy_BL(x, y, out B, out L, a, f, <span class="number">6</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/// </span></span><br><span class="line">        <span class="comment">/// 平面坐标（自然坐标或假定坐标）到大地坐标的高斯反算</span></span><br><span class="line">        <span class="comment">/// </span></span><br><span class="line">        <span class="comment">///平面纵轴</span></span><br><span class="line">        <span class="comment">///平面横轴</span></span><br><span class="line">        <span class="comment">///大地纬度</span></span><br><span class="line">        <span class="comment">///大地经度</span></span><br><span class="line">        <span class="comment">///参考椭球长半轴</span></span><br><span class="line">        <span class="comment">///参考椭球扁率倒数</span></span><br><span class="line">        <span class="comment">///投影分带的带宽</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">xy_BL</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">double</span> y, out <span class="keyword">double</span> B, out <span class="keyword">double</span> L, <span class="keyword">double</span> a, <span class="keyword">double</span> f, <span class="keyword">int</span> beltWidth)</span></span><br><span class="line">        </span>&#123;</span><br><span class="line">            <span class="comment">//如果为假定坐标，转换为自然坐标</span></span><br><span class="line">            <span class="keyword">int</span> beltNum = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span> (y &amp;gt; <span class="number">1000000</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                beltNum = (<span class="keyword">int</span>)Math.Ceiling(y / <span class="number">1000000</span>) – <span class="number">1</span>;</span><br><span class="line">                y -= <span class="number">1000000</span> * beltNum + <span class="number">500000</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//求解纬度与经差</span></span><br><span class="line">            xy_Bl(x, y, out B, out L, a, f, beltWidth);</span><br><span class="line">            <span class="comment">//求解经度</span></span><br><span class="line">            L += beltWidth * beltNum – ((beltWidth == <span class="number">6</span>) ? <span class="number">3</span> : <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/// </span></span><br><span class="line">        <span class="comment">/// 平面坐标（自然坐标）到大地坐标的高斯反算</span></span><br><span class="line">        <span class="comment">/// </span></span><br><span class="line">        <span class="comment">///平面纵轴</span></span><br><span class="line">        <span class="comment">///平面横轴</span></span><br><span class="line">        <span class="comment">///大地纬度</span></span><br><span class="line">        <span class="comment">///经度差</span></span><br><span class="line">        <span class="comment">///参考椭球长半轴</span></span><br><span class="line">        <span class="comment">///参考椭球扁率倒数</span></span><br><span class="line">        <span class="comment">///投影分带的带宽</span></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">xy_Bl</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">double</span> y, out <span class="keyword">double</span> B, out <span class="keyword">double</span> l, <span class="keyword">double</span> a, <span class="keyword">double</span> f, <span class="keyword">int</span> beltWidth)</span></span><br><span class="line">        </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (y &amp;gt; <span class="number">1000000</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> Exception(“坐标类型错误，应使用自然坐标”);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">double</span> ee = (<span class="number">2</span> * f – <span class="number">1</span>) / f / f;       <span class="comment">//第一偏心率的平方</span></span><br><span class="line">            <span class="keyword">double</span> ee2 = ee / (<span class="number">1</span> – ee);            <span class="comment">//第二偏心率的平方</span></span><br><span class="line">            <span class="keyword">double</span> cA, cB, cC, cD, cE;</span><br><span class="line">            cA = <span class="number">1</span> + <span class="number">3</span> * ee / <span class="number">4</span> + <span class="number">45</span> * ee * ee / <span class="number">64</span> + <span class="number">175</span> * Math.Pow(ee, <span class="number">3</span>) / <span class="number">256</span> + <span class="number">11025</span> * Math.Pow(ee, <span class="number">4</span>) / <span class="number">16384</span>;</span><br><span class="line">            cB = <span class="number">3</span> * ee / <span class="number">4</span> + <span class="number">15</span> * ee * ee / <span class="number">16</span> + <span class="number">525</span> * Math.Pow(ee, <span class="number">3</span>) / <span class="number">512</span> + <span class="number">2205</span> * Math.Pow(ee, <span class="number">4</span>) / <span class="number">2048</span>;</span><br><span class="line">            cC = <span class="number">15</span> * ee * ee / <span class="number">64</span> + <span class="number">105</span> * Math.Pow(ee, <span class="number">3</span>) / <span class="number">256</span> + <span class="number">2205</span> * Math.Pow(ee, <span class="number">4</span>) / <span class="number">4096</span>;</span><br><span class="line">            cD = <span class="number">35</span> * Math.Pow(ee, <span class="number">3</span>) / <span class="number">512</span> + <span class="number">315</span> * Math.Pow(ee, <span class="number">4</span>) / <span class="number">2048</span>;</span><br><span class="line">            cE = <span class="number">315</span> * Math.Pow(ee, <span class="number">4</span>) / <span class="number">131072</span>;</span><br><span class="line">            <span class="keyword">double</span> Bf = x / (a * (<span class="number">1</span> – ee) * cA);</span><br><span class="line">            <span class="keyword">do</span></span><br><span class="line">            &#123;</span><br><span class="line">                B = Bf;</span><br><span class="line">                Bf = (x + a * (<span class="number">1</span> – ee) * (cB * Math.Sin(<span class="number">2</span> * Bf) / <span class="number">2</span> – cC * Math.Sin(<span class="number">4</span> * Bf) / <span class="number">4</span> + cD * Math.Sin(<span class="number">6</span> * Bf) / <span class="number">6</span>) – cE * Math.Sin(<span class="number">8</span> * Bf) / <span class="number">8</span>) / (a * (<span class="number">1</span> – ee) * cA);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span> (Math.Abs(B – Bf) &amp;gt; <span class="number">0.00000000001</span>);</span><br><span class="line">            <span class="keyword">double</span> N = a / Math.Sqrt(<span class="number">1</span> – ee * Math.Pow(Math.Sin(Bf), <span class="number">2</span>));</span><br><span class="line">            <span class="keyword">double</span> V2 = <span class="number">1</span> + ee2 * Math.Pow(Math.Cos(Bf), <span class="number">2</span>);</span><br><span class="line">            <span class="keyword">double</span> it2 = ee2 * Math.Pow(Math.Cos(Bf), <span class="number">2</span>);</span><br><span class="line">            <span class="keyword">double</span> tB2 = Math.Pow(Math.Tan(Bf), <span class="number">2</span>);</span><br><span class="line">            B = Bf – V2 * Math.Tan(Bf) / <span class="number">2</span> * (Math.Pow(y / N, <span class="number">2</span>) – (<span class="number">5</span> + <span class="number">3</span> * tB2 + it2 – <span class="number">9</span> * it2 * tB2) * Math.Pow(y / N, <span class="number">4</span>) / <span class="number">12</span> + (<span class="number">61</span> + <span class="number">90</span> * tB2 + <span class="number">45</span> * tB2 * tB2) * Math.Pow(y / N, <span class="number">6</span>) / <span class="number">360</span>);</span><br><span class="line">            l = (y / N – (<span class="number">1</span> + <span class="number">2</span> * tB2 + it2) * Math.Pow(y / N, <span class="number">3</span>) / <span class="number">6</span> + (<span class="number">5</span> + <span class="number">28</span> * tB2 + <span class="number">24</span> * tB2 * tB2 + <span class="number">6</span> * it2 + <span class="number">8</span> * it2 * tB2) * Math.Pow(y / N, <span class="number">5</span>) / <span class="number">120</span>) / Math.Cos(Bf);</span><br><span class="line">            B = B * <span class="number">180</span> / Math.PI;</span><br><span class="line">            l = l * <span class="number">180</span> / Math.PI;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="preprocessor">#endregion</span></span><br><span class="line">        <span class="comment">/// </span></span><br><span class="line">        <span class="comment">/// 由纬度求解子午线弧长</span></span><br><span class="line">        <span class="comment">/// </span></span><br><span class="line">        <span class="comment">///纬度</span></span><br><span class="line">        <span class="comment">///长半轴</span></span><br><span class="line">        <span class="comment">///扁率倒数</span></span><br><span class="line">        <span class="comment">/// 子午线弧长</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">MeridianLength</span><span class="params">(<span class="keyword">double</span> B, <span class="keyword">double</span> a, <span class="keyword">double</span> f)</span></span><br><span class="line">        </span>&#123;</span><br><span class="line">            <span class="keyword">double</span> ee = (<span class="number">2</span> * f – <span class="number">1</span>) / f / f; <span class="comment">//第一偏心率的平方</span></span><br><span class="line">            <span class="keyword">double</span> rB = B * Math.PI / <span class="number">180</span>; <span class="comment">//将度转化为弧度</span></span><br><span class="line">            <span class="comment">//子午线弧长公式的系数</span></span><br><span class="line">            <span class="keyword">double</span> cA, cB, cC, cD, cE;</span><br><span class="line">            cA = <span class="number">1</span> + <span class="number">3</span> * ee / <span class="number">4</span> + <span class="number">45</span> * Math.Pow(ee, <span class="number">2</span>) / <span class="number">64</span> + <span class="number">175</span> * Math.Pow(ee, <span class="number">3</span>) / <span class="number">256</span> + <span class="number">11025</span> * Math.Pow(ee, <span class="number">4</span>) / <span class="number">16384</span>;</span><br><span class="line">            cB = <span class="number">3</span> * ee / <span class="number">4</span> + <span class="number">15</span> * Math.Pow(ee, <span class="number">2</span>) / <span class="number">16</span> + <span class="number">525</span> * Math.Pow(ee, <span class="number">3</span>) / <span class="number">512</span> + <span class="number">2205</span> * Math.Pow(ee, <span class="number">4</span>) / <span class="number">2048</span>;</span><br><span class="line">            cC = <span class="number">15</span> * Math.Pow(ee, <span class="number">2</span>) / <span class="number">64</span> + <span class="number">105</span> * Math.Pow(ee, <span class="number">3</span>) / <span class="number">256</span> + <span class="number">2205</span> * Math.Pow(ee, <span class="number">4</span>) / <span class="number">4096</span>;</span><br><span class="line">            cD = <span class="number">35</span> * Math.Pow(ee, <span class="number">3</span>) / <span class="number">512</span> + <span class="number">315</span> * Math.Pow(ee, <span class="number">4</span>) / <span class="number">2048</span>;</span><br><span class="line">            cE = <span class="number">315</span> * Math.Pow(ee, <span class="number">4</span>) / <span class="number">131072</span>;</span><br><span class="line">            <span class="comment">//子午线弧长</span></span><br><span class="line">            <span class="keyword">return</span> a * (<span class="number">1</span> – ee) * (cA * rB – cB * Math.Sin(<span class="number">2</span> * rB) / <span class="number">2</span> + cC * Math.Sin(<span class="number">4</span> * rB) / <span class="number">4</span> – cD * Math.Sin(<span class="number">6</span> * rB) / <span class="number">6</span> + cE * Math.Sin(<span class="number">8</span> * rB) / <span class="number">8</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ArcGIS/" rel="tag">#ArcGIS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2013/07/22/20132015/windows-phone-手势识别左右滑动/" rel="next" title="windows phone 手势识别左右滑动">
+                <i class="fa fa-chevron-left"></i> windows phone 手势识别左右滑动
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2013/08/11/20132015/wp独立存储空间操作之XML操作/" rel="prev" title="wp 中独立存储空间操作之XML操作">
+                wp 中独立存储空间操作之XML操作 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/images/logo_ljl.jpg" alt="Spicy sister" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Spicy sister</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">183</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">65</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Spicy sister</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+    
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

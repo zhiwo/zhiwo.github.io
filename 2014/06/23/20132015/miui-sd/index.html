@@ -1,0 +1,677 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="MIUI," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="Vold 2.0 Generic fstab- San Mehat (san@android.com)##
+#######################
+Regular device mount##
+Format: dev_mount  &amp;lt;mount_point&amp;gt; &amp;lt;sysfs_path1…&amp;gt;label - Label for the volumemount_point">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIUI sd">
+<meta property="og:url" content="http://hi.holdlg.com/2014/06/23/20132015/miui-sd/index.html">
+<meta property="og:site_name" content="知我">
+<meta property="og:description" content="Vold 2.0 Generic fstab- San Mehat (san@android.com)##
+#######################
+Regular device mount##
+Format: dev_mount  &amp;lt;mount_point&amp;gt; &amp;lt;sysfs_path1…&amp;gt;label - Label for the volumemount_point">
+<meta property="og:updated_time" content="2015-12-25T09:47:41.504Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MIUI sd">
+<meta name="twitter:description" content="Vold 2.0 Generic fstab- San Mehat (san@android.com)##
+#######################
+Regular device mount##
+Format: dev_mount  &amp;lt;mount_point&amp;gt; &amp;lt;sysfs_path1…&amp;gt;label - Label for the volumemount_point">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post',
+    motion: true
+  };
+</script>
+
+  <title> MIUI sd | 知我 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?6adc065ab3239e94c39287e9a4b71c1f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">知我</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                MIUI sd
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-06-23T14:23:17+08:00" content="2014-06-23">
+              2014-06-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="Vold_2-0_Generic_fstab"><a href="#Vold_2-0_Generic_fstab" class="headerlink" title="Vold 2.0 Generic fstab"></a>Vold 2.0 Generic fstab</h2><h2 id="San_Mehat__28san@android-com_29"><a href="#San_Mehat__28san@android-com_29" class="headerlink" title="- San Mehat (san@android.com)"></a>- San Mehat (san@android.com)</h2><p>##</p>
+<p>#######################</p>
+<h2 id="Regular_device_mount"><a href="#Regular_device_mount" class="headerlink" title="Regular device mount"></a>Regular device mount</h2><p>##</p>
+<h2 id="Format_3A_dev_mount__26lt_3Bmount_point_26gt_3B__26lt_3Bsysfs_path1_u2026_26gt_3B"><a href="#Format_3A_dev_mount__26lt_3Bmount_point_26gt_3B__26lt_3Bsysfs_path1_u2026_26gt_3B" class="headerlink" title="Format: dev_mount  &lt;mount_point&gt; &lt;sysfs_path1…&gt;"></a>Format: dev_mount <label> &lt;mount_point&gt; &lt;sysfs_path1…&gt;</label></h2><h2 id="label_-_Label_for_the_volume"><a href="#label_-_Label_for_the_volume" class="headerlink" title="label - Label for the volume"></a>label - Label for the volume</h2><h2 id="mount_point_-_Where_the_volume_will_be_mounted"><a href="#mount_point_-_Where_the_volume_will_be_mounted" class="headerlink" title="mount_point - Where the volume will be mounted"></a>mount_point - Where the volume will be mounted</h2><h2 id="part_-_Partition__23__281_based_29_2C_or__u2018auto_u2019_for_first_usable_partition"><a href="#part_-_Partition__23__281_based_29_2C_or__u2018auto_u2019_for_first_usable_partition" class="headerlink" title="part - Partition # (1 based), or ‘auto’ for first usable partition."></a>part - Partition # (1 based), or ‘auto’ for first usable partition.</h2><h2 id="26lt_3Bsysfs_path_26gt_3B_-_List_of_sysfs_paths_to_source_devices"><a href="#26lt_3Bsysfs_path_26gt_3B_-_List_of_sysfs_paths_to_source_devices" class="headerlink" title="&lt;sysfs_path&gt; - List of sysfs paths to source devices"></a>&lt;sysfs_path&gt; - List of sysfs paths to source devices</h2><p>######################</p>
+<h2 id="Example_of_a_standard_sdcard_mount_for_the_emulator_/_Dream"><a href="#Example_of_a_standard_sdcard_mount_for_the_emulator_/_Dream" class="headerlink" title="Example of a standard sdcard mount for the emulator / Dream"></a>Example of a standard sdcard mount for the emulator / Dream</h2><h1 id="Mounts_the_first_usable_partition_of_the_specified_device"><a href="#Mounts_the_first_usable_partition_of_the_specified_device" class="headerlink" title="Mounts the first usable partition of the specified device"></a>Mounts the first usable partition of the specified device</h1><p>dev_mount sdcard /storage/sdcard1 emmc@fat /devices/platform/goldfish_mmc.0 /devices/platform/mtk-msdc.0/mmc_host<br>dev_mount sdcard2 /storage/sdcard0 auto /devices/platform/goldfish_mmc.1 /devices/platform/mtk-msdc.1/mmc_host</p>
+<h2 id="Example_of_a_dual_card_setup"><a href="#Example_of_a_dual_card_setup" class="headerlink" title="Example of a dual card setup"></a>Example of a dual card setup</h2><h1 id="dev_mount_left_sdcard_/mnt/sdcard1_auto_/devices/platform/goldfish_mmc-0_/devices/platform/mtk-sd-0/mmc_host/mmc0"><a href="#dev_mount_left_sdcard_/mnt/sdcard1_auto_/devices/platform/goldfish_mmc-0_/devices/platform/mtk-sd-0/mmc_host/mmc0" class="headerlink" title="dev_mount left_sdcard /mnt/sdcard1 auto /devices/platform/goldfish_mmc.0 /devices/platform/mtk-sd.0/mmc_host/mmc0"></a>dev_mount left_sdcard /mnt/sdcard1 auto /devices/platform/goldfish_mmc.0 /devices/platform/mtk-sd.0/mmc_host/mmc0</h1><h1 id="dev_mount_right_sdcard_/mnt/sdcard2_auto_/devices/platform/goldfish_mmc-1_/devices/platform/mtk-sd-2/mmc_host/mmc2"><a href="#dev_mount_right_sdcard_/mnt/sdcard2_auto_/devices/platform/goldfish_mmc-1_/devices/platform/mtk-sd-2/mmc_host/mmc2" class="headerlink" title="dev_mount right_sdcard /mnt/sdcard2 auto /devices/platform/goldfish_mmc.1 /devices/platform/mtk-sd.2/mmc_host/mmc2"></a>dev_mount right_sdcard /mnt/sdcard2 auto /devices/platform/goldfish_mmc.1 /devices/platform/mtk-sd.2/mmc_host/mmc2</h1><h2 id="Example_of_specifying_a_specific_partition_for_mounts"><a href="#Example_of_specifying_a_specific_partition_for_mounts" class="headerlink" title="Example of specifying a specific partition for mounts"></a>Example of specifying a specific partition for mounts</h2><h1 id="dev_mount_sdcard_/mnt/sdcard_2_/devices/platform/goldfish_mmc-0_/devices/platform/msm_sdcc-2/mmc_host/mmc1"><a href="#dev_mount_sdcard_/mnt/sdcard_2_/devices/platform/goldfish_mmc-0_/devices/platform/msm_sdcc-2/mmc_host/mmc1" class="headerlink" title="dev_mount sdcard /mnt/sdcard 2 /devices/platform/goldfish_mmc.0 /devices/platform/msm_sdcc.2/mmc_host/mmc1"></a>dev_mount sdcard /mnt/sdcard 2 /devices/platform/goldfish_mmc.0 /devices/platform/msm_sdcc.2/mmc_host/mmc1</h1><h1 id="usb_otg_disk"><a href="#usb_otg_disk" class="headerlink" title="usb otg disk"></a>usb otg disk</h1><p>dev_mount usbotg /mnt/usbotg auto /devices/platform/mt_usb /devices/platform/musbfsh_hdrc</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MIUI/" rel="tag">#MIUI</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/06/17/20132015/bind9安装的bug/" rel="next" title="bind9安装的bug">
+                <i class="fa fa-chevron-left"></i> bind9安装的bug
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/07/01/20132015/正则表达式/" rel="prev" title="正则表达式">
+                正则表达式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/images/logo_ljl.jpg" alt="Spicy sister" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Spicy sister</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">183</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">65</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vold_2-0_Generic_fstab"><span class="nav-number">1.</span> <span class="nav-text">Vold 2.0 Generic fstab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#San_Mehat__28san@android-com_29"><span class="nav-number">2.</span> <span class="nav-text">- San Mehat (san@android.com)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Regular_device_mount"><span class="nav-number">3.</span> <span class="nav-text">Regular device mount</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Format_3A_dev_mount__26lt_3Bmount_point_26gt_3B__26lt_3Bsysfs_path1_u2026_26gt_3B"><span class="nav-number">4.</span> <span class="nav-text">Format: dev_mount  <mount_point> <sysfs_path1…></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#label_-_Label_for_the_volume"><span class="nav-number">5.</span> <span class="nav-text">label - Label for the volume</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mount_point_-_Where_the_volume_will_be_mounted"><span class="nav-number">6.</span> <span class="nav-text">mount_point - Where the volume will be mounted</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#part_-_Partition__23__281_based_29_2C_or__u2018auto_u2019_for_first_usable_partition"><span class="nav-number">7.</span> <span class="nav-text">part - Partition # (1 based), or ‘auto’ for first usable partition.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#26lt_3Bsysfs_path_26gt_3B_-_List_of_sysfs_paths_to_source_devices"><span class="nav-number">8.</span> <span class="nav-text"><sysfs_path> - List of sysfs paths to source devices</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example_of_a_standard_sdcard_mount_for_the_emulator_/_Dream"><span class="nav-number">9.</span> <span class="nav-text">Example of a standard sdcard mount for the emulator / Dream</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mounts_the_first_usable_partition_of_the_specified_device"><span class="nav-number"></span> <span class="nav-text">Mounts the first usable partition of the specified device</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Example_of_a_dual_card_setup"><span class="nav-number">1.</span> <span class="nav-text">Example of a dual card setup</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dev_mount_left_sdcard_/mnt/sdcard1_auto_/devices/platform/goldfish_mmc-0_/devices/platform/mtk-sd-0/mmc_host/mmc0"><span class="nav-number"></span> <span class="nav-text">dev_mount left_sdcard /mnt/sdcard1 auto /devices/platform/goldfish_mmc.0 /devices/platform/mtk-sd.0/mmc_host/mmc0</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dev_mount_right_sdcard_/mnt/sdcard2_auto_/devices/platform/goldfish_mmc-1_/devices/platform/mtk-sd-2/mmc_host/mmc2"><span class="nav-number"></span> <span class="nav-text">dev_mount right_sdcard /mnt/sdcard2 auto /devices/platform/goldfish_mmc.1 /devices/platform/mtk-sd.2/mmc_host/mmc2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Example_of_specifying_a_specific_partition_for_mounts"><span class="nav-number">1.</span> <span class="nav-text">Example of specifying a specific partition for mounts</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dev_mount_sdcard_/mnt/sdcard_2_/devices/platform/goldfish_mmc-0_/devices/platform/msm_sdcc-2/mmc_host/mmc1"><span class="nav-number"></span> <span class="nav-text">dev_mount sdcard /mnt/sdcard 2 /devices/platform/goldfish_mmc.0 /devices/platform/msm_sdcc.2/mmc_host/mmc1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#usb_otg_disk"><span class="nav-number"></span> <span class="nav-text">usb otg disk</span></a></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Spicy sister</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+    
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

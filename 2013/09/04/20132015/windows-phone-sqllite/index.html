@@ -1,0 +1,764 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="WP8," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="大家知道，在移动端实现数据的离线采集，最重要的一点就是在移动设备上临时存储数据，那么需要移动设备上提供对数据库（不管是本地原生还是第三方）的支持。SQLite是一款轻型的数据库，目前已经在很多嵌入式产品中使用了它，iOS和Android等主流的移动平台也对它提供了支持，关于SQLite数据在此不再赘述，有需要的同学自己谷歌一下。本文主要研究了以下2点：
+1、在Windows Phone上使用SQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows phone 使用 Sqllite">
+<meta property="og:url" content="http://hi.holdlg.com/2013/09/04/20132015/windows-phone-sqllite/index.html">
+<meta property="og:site_name" content="知我">
+<meta property="og:description" content="大家知道，在移动端实现数据的离线采集，最重要的一点就是在移动设备上临时存储数据，那么需要移动设备上提供对数据库（不管是本地原生还是第三方）的支持。SQLite是一款轻型的数据库，目前已经在很多嵌入式产品中使用了它，iOS和Android等主流的移动平台也对它提供了支持，关于SQLite数据在此不再赘述，有需要的同学自己谷歌一下。本文主要研究了以下2点：
+1、在Windows Phone上使用SQL">
+<meta property="og:image" content="http://my.csdn.net/uploads/201205/24/1337828223_6076.png">
+<meta property="og:image" content="http://my.csdn.net/uploads/201205/24/1337839297_1221.png">
+<meta property="og:image" content="http://my.csdn.net/uploads/201205/24/1337838788_6959.png">
+<meta property="og:image" content="http://my.csdn.net/uploads/201205/24/1337838844_1855.png">
+<meta property="og:image" content="http://my.csdn.net/uploads/201205/24/1337838912_3152.png">
+<meta property="og:image" content="http://my.csdn.net/uploads/201205/24/1337838966_9320.png">
+<meta property="og:image" content="http://my.csdn.net/uploads/201205/24/1337839004_5250.png">
+<meta property="og:image" content="http://my.csdn.net/uploads/201205/24/1337839080_9239.png">
+<meta property="og:image" content="http://my.csdn.net/uploads/201205/24/1337839089_7877.png">
+<meta property="og:updated_time" content="2015-12-25T09:57:17.511Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="windows phone 使用 Sqllite">
+<meta name="twitter:description" content="大家知道，在移动端实现数据的离线采集，最重要的一点就是在移动设备上临时存储数据，那么需要移动设备上提供对数据库（不管是本地原生还是第三方）的支持。SQLite是一款轻型的数据库，目前已经在很多嵌入式产品中使用了它，iOS和Android等主流的移动平台也对它提供了支持，关于SQLite数据在此不再赘述，有需要的同学自己谷歌一下。本文主要研究了以下2点：
+1、在Windows Phone上使用SQL">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post',
+    motion: true
+  };
+</script>
+
+  <title> windows phone 使用 Sqllite | 知我 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?6adc065ab3239e94c39287e9a4b71c1f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">知我</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                windows phone 使用 Sqllite
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2013-09-04T09:25:36+08:00" content="2013-09-04">
+              2013-09-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/WP8/" itemprop="url" rel="index">
+                    <span itemprop="name">WP8</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>大家知道，在移动端实现数据的离线采集，最重要的一点就是在移动设备上临时存储数据，那么需要移动设备上提供对数据库（不管是本地原生还是第三方）的支持。SQLite是一款轻型的数据库，目前已经在很多嵌入式产品中使用了它，iOS和Android等主流的移动平台也对它提供了支持，关于SQLite数据在此不再赘述，有需要的同学自己谷歌一下。本文主要研究了以下2点：</p>
+<p><strong>1、在Windows Phone上使用SQLite数据库。</strong></p>
+<p>其实SQLite的使用很简单，学过或了解SQL语句的同学都非常容易上手，在这部分我将详细讲述在WP上使用SQLite的详细步骤，包括安装配置和详细代码，供初学者参考。</p>
+<p><strong>2、获取独立存储区中的数据库文件。</strong></p>
+<p>独立存储（IsolatedStorage）是Silverlight一个特色，它是Silverlight的虚拟文件系统，关于虚拟文件系统的概念，大家也可以自己百度，Windows Phone 7是基于Silverlight，它的文件系统也是IsolatedStorage，使用SQLite在WP端存储离线数据时，数据库文件就存放在独立存储区，那么这给我们开发者带来的一个困扰是：我们似乎无法看到模拟器中的数据库文件，不知道每次操作时数据库中发生了怎么样的改变，不利于调试，因此，这部分给大家介绍两种工具，分别用来从真机/模拟器的独立存储中取出数据文件和可视化的操作数据文件。</p>
+<p>先看第一部分。</p>
+<p>&nbsp;</p>
+<h1 id="1_u3001_u5728Windows_Phone_u4E0A_u4F7F_u7528SQLite_u6570_u636E_u5E93"><a href="#1_u3001_u5728Windows_Phone_u4E0A_u4F7F_u7528SQLite_u6570_u636E_u5E93" class="headerlink" title="1、在Windows Phone上使用SQLite数据库"></a><a name="t0"></a>1、在Windows Phone上使用SQLite数据库</h1><h2 id="1_uFF09_u83B7_u53D6SQLite_u7C7B_u5E93"><a href="#1_uFF09_u83B7_u53D6SQLite_u7C7B_u5E93" class="headerlink" title="1）获取SQLite类库"></a><a name="t1"></a>1）获取SQLite类库</h2><p>1、从网站下载Sqlite Clientfor Windows Phone 7，截止目前，最新版本为0.6.1，下载地址：<a href="http://sqlitewindowsphone.codeplex.com/" target="_blank" rel="external">http://sqlitewindowsphone.codeplex.com/</a>；</p>
+<p>2、下载后解压文件夹内容如下：</p>
+<p>&nbsp;</p>
+<blockquote>
+<p><img src="http://my.csdn.net/uploads/201205/24/1337828223_6076.png" alt=""><br>&nbsp;</p>
+</blockquote>
+<p>&nbsp;</p>
+<p>3、编译Community.CsharpSqlite.WP程序，获取Community.CsharpSqlite.WP.dll类库文件。</p>
+<p>&nbsp;</p>
+<h2 id="2_uFF09_u5728Windows_Phone_u4E0A_u4F7F_u7528SQLite"><a href="#2_uFF09_u5728Windows_Phone_u4E0A_u4F7F_u7528SQLite" class="headerlink" title="2）在Windows Phone上使用SQLite"></a><a name="t2"></a>2）在Windows Phone上使用SQLite</h2><p>&nbsp;</p>
+<p>1、新建windows Phone应用程序，目标平台选择wpos 7.1；</p>
+<p>2、添加对1）中生成的Community.CsharpSqlite.WP.dll文件的引用；</p>
+<p>3、在新建的程序主页面中设计4个按钮，分别用来创建、填充、清除和关闭数据库，如下：</p>
+<blockquote>
+<p>&nbsp;</p>
+<p><img src="http://my.csdn.net/uploads/201205/24/1337839297_1221.png" alt=""><br>&nbsp;</p>
+</blockquote>
+<p>4、在后台代码中添加SQLite类库的引用：</p>
+<blockquote>
+<table border="1" cellspacing="0" cellpadding="0">
+
+<tbody><br><br><tr><br><br><td valign="top">using System;<br><br><br>using System.Collections.Generic;<br><br><br>using System.Linq;<br><br><br>using System.Net;<br><br><br>using System.Windows;<br><br><br>using System.Windows.Controls;<br><br><br>using System.Windows.Documents;<br><br><br>using System.Windows.Input;<br><br><br>using System.Windows.Media;<br><br><br>using System.Windows.Media.Animation;<br><br><br>using System.Windows.Shapes;<br><br><br>using Microsoft.Phone.Controls;<br><br><br>using SQLiteClient;</td><br><br></tr><br><br></tbody>
+
+<p></p></table><br>&nbsp;<p></p>
+</blockquote>
+<p>5、添加SQLite数据库连接变量：</p>
+<blockquote>
+<table border="1" cellspacing="0" cellpadding="0"><br><br><tbody><br><br><tr><br><br><td valign="top">namespace SQLiteTest<br><br><br>{<br><br><br>public partial class MainPage : PhoneApplicationPage<br><br><br>{<br><br><br>SQLiteConnection mySQLiteDB = null;<br><br><br>&nbsp;<br><br><br>// 构造函数<br><br><br>public MainPage()<br><br><br>{<br><br><br>InitializeComponent();<br><br><br>}<br><br><br>}<br><br><br>}</td><br><br></tr><br><br></tbody><br><br></table>
+
+<p>&nbsp;<br>6、给“Open”按钮添加事件，创建并打开数据库：</p>
+<table border="1" cellspacing="0" cellpadding="0">
+
+<tbody><br><br><tr><br><br><td valign="top"><br><br><br>private void btnOpen_Click(object sender, RoutedEventArgs e)<br><br>        {<br><br>            if (mySQLiteDB == null)<br><br>            {<br><br>                mySQLiteDB = new SQLiteConnection(“TestSQLiteDB”);<br><br>                mySQLiteDB.Open();<br><br>                btnOpen.IsEnabled = false;<br><br>                btnClose.IsEnabled = true;<br><br>                btnClear.IsEnabled = false;<br><br>                btnPopulate.IsEnabled = true;<br><br>            }<br><br>        }<br><br></td><br><br></tr><br><br></tbody>
+
+<p></p></table><br>&nbsp;<p></p>
+</blockquote>
+<p>7、接下来，需要创建表，并往表中填充数据，使用SQLiteCommand对象实现：</p>
+<blockquote>
+<table border="1" cellspacing="0" cellpadding="0">
+
+<tbody><br><br><tr><br><br><td valign="top"><br><br><br>private void btnPopulate_Click(object sender, RoutedEventArgs e)<br><br>        {<br><br>            //创建表RegisteredStudents，有3个属性：id、姓名、学号<br><br>            SQLiteCommand cmd = mySQLiteDB.CreateCommand(“Create table RegisteredStudents (id int primary key,name text,zipcode numeric(7))”);<br><br>            int i = cmd.ExecuteNonQuery();<br><br>            int id = 0;<br><br>            string name = “Name” + id;<br><br>            int zipcode = 98000;<br><br>            for (int j = 0; j &lt; 10; j++)<br><br>            {<br><br>                id++;<br><br>                name = “Name” + id;<br><br>                zipcode = 98000 + id;<br><br>                cmd.CommandText = “ Insert into RegisteredStudents (id, name, zipcode) values (“ + id +”,\”” + name +”\”,” + zipcode +”)”;<br><br>                i = cmd.ExecuteNonQuery();<br><br>            }<br><br>            btnPopulate.IsEnabled = false;<br><br>            btnClear.IsEnabled = true;<br><br>        }<br><br></td><br><br></tr><br><br></tbody>
+
+<p></p></table><br>&nbsp;<p></p>
+</blockquote>
+<p>8、清空表中的数据，同样使用SQLiteCommand对象，代码如下：</p>
+<blockquote>
+<table border="1" cellspacing="0" cellpadding="0"><br><br><tbody><br><br><tr><br><br><td valign="top"><br><br>&gt; private void btnClear_Click(object sender, RoutedEventArgs e)<br>&gt;<br>&gt;         {<br>&gt;<br>&gt;             SQLiteCommand cmd = mySQLiteDB.CreateCommand(“drop table RegisteredStudents”);<br>&gt;<br>&gt;             int i = cmd.ExecuteNonQuery();<br>&gt;<br>&gt;             btnPopulate.IsEnabled = true;<br>&gt;<br>&gt;             btnClear.IsEnabled = false;<br>&gt;<br>&gt;         }<br>&gt;<br>&gt; &nbsp;<br><br></td><br><br></tr><br><br></tbody><br><br></table>
+
+<p>&nbsp;<br>9、断开数据库连接，关闭数据库，如下:</p>
+<table border="1" cellspacing="0" cellpadding="0">
+
+<tbody><br><br><tr><br><br><td valign="top"><br><br><br>private void btnClose_Click(object sender, RoutedEventArgs e)<br><br>        {<br><br>            if (mySQLiteDB != null)<br><br>            {<br><br>                mySQLiteDB.Dispose();<br><br>                mySQLiteDB = null;<br><br>                btnOpen.IsEnabled = true;<br><br>                btnPopulate.IsEnabled = false;<br><br>                btnClear.IsEnabled = false;<br><br>                btnClose.IsEnabled = false;<br><br>            }<br><br>        }<br><br></td><br><br></tr><br><br></tbody>
+
+<p></p></table><br>&nbsp;<p></p>
+</blockquote>
+<p>运行程序，点击open可以在WP的模拟器的独立存储空间中创建名为“TestSQLiteDB”数据库，点击populate按钮可以为其填充数据，点击clear可以清空数据库中的数据，close关闭数据库连接。但是所有这些执行成功的操作在数据库中引起了怎样的变化，我们不得而知，所以接下来我们进入到第二步，如何取到模拟器中的数据库文件。</p>
+<p>&nbsp;</p>
+<h1 id="2_u3001_u83B7_u53D6_u548C_u64CD_u4F5C_u72EC_u7ACB_u5B58_u50A8_u533A_u4E2D_u7684_u6570_u636E_u5E93_u6587_u4EF6"><a href="#2_u3001_u83B7_u53D6_u548C_u64CD_u4F5C_u72EC_u7ACB_u5B58_u50A8_u533A_u4E2D_u7684_u6570_u636E_u5E93_u6587_u4EF6" class="headerlink" title="2、获取和操作独立存储区中的数据库文件"></a><a name="t3"></a>2、获取和操作独立存储区中的数据库文件</h1><h2 id="1_uFF09_u83B7_u53D6_u6570_u636E_u5E93_u6587_u4EF6"><a href="#1_uFF09_u83B7_u53D6_u6570_u636E_u5E93_u6587_u4EF6" class="headerlink" title="1）获取数据库文件"></a><a name="t4"></a>1）获取数据库文件</h2><p>&nbsp;</p>
+<p>Windows Phone Power Tools工具可以直接连接模拟器/真机，读取独立存储空间中的数据（<a href="http://www.cnblogs.com/vistach/archive/2012/02/23/Windows_Phone_WP7_LINQ_Database_DB_View_SQL_Server_CompactPowerTools_IsolatedStorage.html" target="_blank" rel="external">参考文章</a>）。<a href="http://wptools.codeplex.com/" target="_blank" rel="external">下载</a>该工具，具体使用方法很简单，如下图：</p>
+<blockquote>
+<p><img src="http://my.csdn.net/uploads/201205/24/1337838788_6959.png" alt=""><br>&nbsp;</p>
+</blockquote>
+<p>选择真机或模拟器连接</p>
+<blockquote>
+<p><img src="http://my.csdn.net/uploads/201205/24/1337838844_1855.png" alt=""><br>&nbsp;</p>
+</blockquote>
+<p>连接成功后，在File Browser中可以看到，已经取到了该应用程序的独立存储区以及其中的数据库文件，点击“get”，将该数据文件存储到本地：</p>
+<blockquote>
+<p><img src="http://my.csdn.net/uploads/201205/24/1337838912_3152.png" alt=""><br>&nbsp;</p>
+</blockquote>
+<h2 id="2_uFF09_u53EF_u89C6_u5316_u64CD_u4F5C_u6570_u636E_u5E93_u6587_u4EF6"><a href="#2_uFF09_u53EF_u89C6_u5316_u64CD_u4F5C_u6570_u636E_u5E93_u6587_u4EF6" class="headerlink" title="2）可视化操作数据库文件"></a><a name="t5"></a>2）可视化操作数据库文件</h2><p>&nbsp;</p>
+<p>通过Windows Phone PowerTools将数据库文件导出到电脑中，这个时候我们可以依靠另一种非常好用的可视化工具“SQLite-Manager”来操作和管理数据库文件了。SQLite-Manager帮助我们管理和创建与数据库相关的东西，如database、tables、views等，SQLite-Manager是一个插件，可以在火狐浏览器中安装：</p>
+<blockquote>
+<p><img src="http://my.csdn.net/uploads/201205/24/1337838966_9320.png" alt=""><br>&nbsp;</p>
+</blockquote>
+<p>安装好后，在火狐的浏览器菜单中启动SQLite Manager：</p>
+<blockquote>
+<p><img src="http://my.csdn.net/uploads/201205/24/1337839004_5250.png" alt=""><br>&nbsp;</p>
+</blockquote>
+<p>接下来，我们就可以非常方便的可视化的操作数据库了：</p>
+<blockquote>
+<p><img src="http://my.csdn.net/uploads/201205/24/1337839080_9239.png" alt=""><br>&nbsp;<br><img src="http://my.csdn.net/uploads/201205/24/1337839089_7877.png" alt=""></p>
+</blockquote>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/WP8/" rel="tag">#WP8</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2013/09/02/20132015/arcgis10.0及10.1/" rel="next" title="ArcGIS 10.0及10.1">
+                <i class="fa fa-chevron-left"></i> ArcGIS 10.0及10.1
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2013/09/04/20132015/arcgisArcGIS10.1地图发布/" rel="prev" title="ArcGIS10.1地图发布">
+                ArcGIS10.1地图发布 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/images/logo_ljl.jpg" alt="Spicy sister" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Spicy sister</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">183</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">65</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1_u3001_u5728Windows_Phone_u4E0A_u4F7F_u7528SQLite_u6570_u636E_u5E93"><span class="nav-number">1.</span> <span class="nav-text">1、在Windows Phone上使用SQLite数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1_uFF09_u83B7_u53D6SQLite_u7C7B_u5E93"><span class="nav-number">1.1.</span> <span class="nav-text">1）获取SQLite类库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2_uFF09_u5728Windows_Phone_u4E0A_u4F7F_u7528SQLite"><span class="nav-number">1.2.</span> <span class="nav-text">2）在Windows Phone上使用SQLite</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2_u3001_u83B7_u53D6_u548C_u64CD_u4F5C_u72EC_u7ACB_u5B58_u50A8_u533A_u4E2D_u7684_u6570_u636E_u5E93_u6587_u4EF6"><span class="nav-number">2.</span> <span class="nav-text">2、获取和操作独立存储区中的数据库文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1_uFF09_u83B7_u53D6_u6570_u636E_u5E93_u6587_u4EF6"><span class="nav-number">2.1.</span> <span class="nav-text">1）获取数据库文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2_uFF09_u53EF_u89C6_u5316_u64CD_u4F5C_u6570_u636E_u5E93_u6587_u4EF6"><span class="nav-number">2.2.</span> <span class="nav-text">2）可视化操作数据库文件</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Spicy sister</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+    
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>
